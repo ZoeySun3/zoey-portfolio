@@ -835,7 +835,7 @@ function openProject(id, opener) {
   if (links.length) {
     const nav = element('div', 'project-detail-links');
     links.forEach(item => {
-      const link = element('a', 'quiet-link', `${item.label} ↗`);
+      const link = element('a', 'quiet-link', item.label);
       link.href = item.url;
       if (item.url.startsWith('#')) link.addEventListener('click', () => projectDialog.close());
       else { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
@@ -861,21 +861,6 @@ projectDialog.addEventListener('click', event => {
 projectDialog.addEventListener('close', () => {
   document.body.classList.remove('project-dialog-open');
   projectOpener?.focus({preventScroll: true});
-});
-
-// Revealing an email uses native <details>; copying is a progressive enhancement.
-$$('[data-copy-email]').forEach(button => {
-  button.hidden = false;
-  button.addEventListener('click', async () => {
-    const status = button.closest('.email-reveal').querySelector('.email-status');
-    button.disabled = true;
-    try {
-      await navigator.clipboard.writeText(button.dataset.copyEmail);
-      status.textContent = 'Email copied.';
-    } catch {
-      status.textContent = 'Select the email address above to copy it.';
-    } finally { button.disabled = false; }
-  });
 });
 
 const input = $('#chat-input');
@@ -919,7 +904,7 @@ function addMessage(role, text, source, waiting = false, mode = '') {
   if (mode === 'local') message.append(element('span','message-kind','Saved profile answer'));
   message.append(element('p','',text));
   if (source && allowedSources.includes(source)) {
-    const link = element('a','message-source',source.startsWith('https:') ? 'Read the publication ↗' : 'Explore the profile ↗');
+    const link = element('a','message-source',source.startsWith('https:') ? 'Read the publication' : 'Explore the profile');
     link.href = source;
     if (source.startsWith('https:')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
     message.append(link);

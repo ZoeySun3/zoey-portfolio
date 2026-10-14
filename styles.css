@@ -55,11 +55,9 @@ img { display: block; max-width: 100%; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 18px; padding: 12px 20px; min-height: 46px; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 500; text-decoration: none; transition: background .18s; }
 .button:hover { background: var(--accent-strong); text-decoration: none; }
 .quiet-link { color: var(--ink); font-size: 14px; font-weight: 500; text-decoration: none; }
-.quiet-link span { margin-left: 9px; }
 .profile-links { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 23px; margin-top: 23px; }
 .profile-links > a, .profile-links summary { color: var(--muted); font-size: 14px; text-decoration: none; }
 .profile-links > a:hover, .profile-links summary:hover { color: var(--accent); text-decoration: underline; }
-.profile-links span { margin-left: 3px; }
 .profile-portrait { align-self: center; padding-top: 9px; }
 .profile-photo { width: 300px; height: 356px; object-fit: cover; object-position: center; border-radius: 18px; }
 .profile-photo { box-shadow: 10px 10px 0 var(--accent-soft); }
@@ -161,27 +159,19 @@ img { display: block; max-width: 100%; }
 .contact-illustration { display: block; color: var(--accent); margin-top: 20px; }
 .contact > p { color: var(--muted); font-size: 16px; margin-top: 8px; max-width: 420px; }
 .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; max-width: 100%; }
-.contact-links > a, .contact-links > .email-contact > summary { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-width: 138px; min-height: 48px; padding: 11px 18px; border: 1px solid var(--accent-line); border-radius: 8px; color: var(--accent); background: transparent; font-size: 15px; font-weight: 500; text-decoration: none; transition: background .18s, border-color .18s; }
+.contact-links > a, .contact-links > .email-contact > summary { display: inline-flex; align-items: center; justify-content: center; min-width: 138px; min-height: 48px; padding: 11px 18px; border: 1px solid var(--accent-line); border-radius: 8px; color: var(--accent); background: transparent; font-size: 15px; font-weight: 500; text-decoration: none; transition: background .18s, border-color .18s; }
 .contact-links > a:hover, .contact-links > .email-contact > summary:hover { background: var(--accent-soft); border-color: var(--accent); }
 .contact-links > a span, .contact-links summary span { line-height: 1; }
 
 
 /* Native disclosure reveals the address even without JavaScript or a mail app. */
 .email-contact { position: relative; text-align: left; }
-.email-contact summary { display: inline-flex; align-items: center; justify-content: space-between; gap: 9px; list-style: none; cursor: pointer; }
+.email-contact summary { display: inline-flex; align-items: center; justify-content: center; list-style: none; cursor: pointer; }
 .email-contact summary::-webkit-details-marker { display: none; }
-.email-contact summary > span { transition: transform .15s; }
-.email-contact[open] summary > span { transform: rotate(45deg); }
 .email-reveal { position: absolute; z-index: 5; top: calc(100% + 10px); left: 0; width: min(300px, calc(100vw - 40px)); padding: 17px 18px; border: 1px solid var(--accent-line); border-radius: 12px; background: var(--paper); box-shadow: 0 8px 24px #263c3014; }
 .profile-links .email-contact { position: static; }
 .profile-links .email-reveal { top: calc(100% + 10px); }
 .email-address { color: var(--accent-strong); font-size: 16px; font-weight: 500; overflow-wrap: anywhere; user-select: all; }
-.email-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 12px; }
-.email-actions button { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; font-size: 13px; }
-.email-actions a { color: var(--accent); font-size: 13px; text-decoration: none; }
-.email-actions a:hover { text-decoration: underline; }
-.email-status { color: var(--muted); font-size: 12px; line-height: 1.5; }
-.email-status:not(:empty) { margin-top: 10px; }
 
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-block: 23px 29px; color: var(--muted); font-size: 13px; }
 .site-footer a { color: var(--muted); text-decoration: none; }
@@ -284,7 +274,6 @@ img { display: block; max-width: 100%; }
   #chat-form { gap: 8px; }
   #chat-input { padding-inline: 10px; }
   #chat-send { padding-inline: 12px; gap: 8px; }
-  #chat-send span { display: none; }
   .suggested-questions { gap: 7px; }
   .suggested-questions button { padding-inline: 10px; }
 }
@@ -357,7 +346,6 @@ h2 { font-size: clamp(32px, 3.8vw, 44px); font-weight: 600; letter-spacing: -1.4
 .skill-chip svg, .skill-category-icon { flex: 0 0 16px; color: currentColor; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .project-open { display: flex; align-items: center; justify-content: space-between; gap: 15px; width: 100%; margin-top: 24px; padding: 13px 0 0; border: 0; border-top: 1px solid var(--line); background: none; color: var(--accent); font-size: 14px; font-weight: 500; text-align: left; }
 .project-open::after { content: ''; position: absolute; inset: 0; border-radius: 24px; }
-.project-open span { font-size: 19px; line-height: 1; }
 .project-open:focus-visible { outline: none; }
 .work-section .note { margin-top: 12px; }
 

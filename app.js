@@ -605,6 +605,43 @@ function answerLocally(question) {
 
 const allowedSources = ['#about','#experience','#skills','#education','#work','#research','#contact'];
 
+function resolveChatApiBase(configuredBase, pageHref) {
+  const page = new URL(pageHref);
+  if (page.protocol === 'file:') return '';
+  const isLocal = url => ['localhost','127.0.0.1','[::1]'].includes(url.hostname);
+  if (!configuredBase?.trim()) return isLocal(page) ? page.origin : '';
+  try {
+    const base = new URL(configuredBase.trim());
+    if (base.username || base.password || base.search || base.hash || base.pathname !== '/') return '';
+    if (base.protocol !== 'https:' && !(page.protocol === 'http:' && isLocal(page) && base.protocol === 'http:' && isLocal(base))) return '';
+    return base.origin;
+  } catch { return ''; }
+}
+
+function createChatClient({apiBase='', pageHref, fetchImpl=fetch} = {}) {
+  const base = resolveChatApiBase(apiBase,pageHref);
+  return {
+    enabled: Boolean(base),
+    // Allow time for a free backend to wake up before the model's own timeout.
+    timeoutMs: base && new URL(base).origin !== new URL(pageHref).origin ? 90000 : 25000,
+    async ask(messages, signal) {
+      if (!base) throw new Error('AI backend is not configured.');
+      const response = await fetchImpl(`${base}/api/chat`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        credentials:'omit', body:JSON.stringify({messages}), signal
+      });
+      if (!response.ok) {
+        const error = new Error('AI assistant unavailable.');
+        error.reason = response.status === 429 ? 'rate_limited' : 'provider_unavailable';
+        throw error;
+      }
+      const result = await response.json();
+      if (!['ai','local'].includes(result?.mode) || typeof result.answer !== 'string' || !result.answer.trim() || result.answer.length > 12000) throw new Error('Invalid response.');
+      return result;
+    }
+  };
+}
+
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -776,21 +813,20 @@ projectDialog.addEventListener('close', () => {
 const input = $('#chat-input');
 const messageLog = $('#chat-messages');
 const initialMessage = messageLog.firstElementChild.cloneNode(true);
-let aiEnabled = false, busy = false, controller, generation = 0;
+const chatClient = createChatClient({apiBase:window.ZOEY_CONFIG?.chatApiBase, pageHref:location.href});
+let aiEnabled = chatClient.enabled, busy = false, controller, generation = 0;
 let conversation = [];
 
-function showMode(ai, fallback = false) {
+function showMode(ai, fallback = false, reason = '') {
   $('#chat-mode').textContent = ai ? 'AI assistant' : 'Profile Q&A';
   $('#chat-disclosure').textContent = ai
-    ? 'Messages are sent to OpenAI. Answers can be imperfect; check the sources.'
-    : fallback ? 'The AI assistant is unavailable. Showing a prepared profile answer.' : 'Prepared answers from Zoey’s profile and publications.';
+    ? 'Messages are sent to Groq to answer from Zoey’s public profile. Answers may be imperfect.'
+    : fallback ? (reason === 'rate_limited' ? 'The AI assistant has reached its usage limit. Showing a prepared profile answer; please try again later.' : 'The AI assistant is unavailable. Showing a prepared profile answer.') : 'Prepared answers from Zoey’s profile and publications.';
 }
 
-// Static hosting keeps the same portfolio and transparent local Q&A.
-if (location.protocol !== 'file:') fetch('api/status', {signal:AbortSignal.timeout(4000)})
-  .then(response=>response.ok ? response.json() : null)
-  .then(status=>{ aiEnabled = status?.mode === 'ai'; showMode(aiEnabled); })
-  .catch(()=>showMode(false));
+// Try the configured backend on each question: a cold start or transient failure
+// must not permanently disable AI for this visit. No messages are stored locally.
+showMode(aiEnabled);
 
 function addMessage(role, text, source, waiting = false) {
   const message = element('div',`message ${role}${waiting ? ' waiting' : ''}`);
@@ -827,28 +863,27 @@ async function submitQuestion(question) {
   const waiting = addMessage('assistant', 'Looking up profile information…', null, true);
   const requestController = new AbortController();
   controller = requestController;
-  const timer = setTimeout(()=>requestController.abort(),25000);
+  const timer = setTimeout(()=>requestController.abort(),chatClient.timeoutMs);
+  const wakeTimer = aiEnabled ? setTimeout(()=>{
+    if (requestGeneration === generation) waiting.querySelector('p').textContent = 'The assistant is taking a little longer to connect. Thank you for waiting…';
+  },8000) : null;
   let result;
   try {
     if (aiEnabled) {
-      const response = await fetch('api/chat', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({messages:conversation}), signal:requestController.signal
-      });
-      if (!response.ok) throw new Error(`Assistant unavailable (${response.status})`);
-      result = await response.json();
-      if (!['ai','local'].includes(result.mode) || typeof result.answer !== 'string' || !result.answer.trim()) throw new Error('Invalid response');
-      showMode(result.mode === 'ai',result.mode !== 'ai');
+      result = await chatClient.ask(conversation,requestController.signal);
+      if (requestGeneration !== generation) return;
+      showMode(result.mode === 'ai',result.mode !== 'ai',result.reason);
     } else {
       result = answerLocally(text);
       showMode(false);
     }
-  } catch {
+  } catch (error) {
     if (requestGeneration !== generation) return;
     result = answerLocally(text);
-    showMode(false,true);
+    showMode(false,true,error.reason);
   } finally {
     clearTimeout(timer);
+    clearTimeout(wakeTimer);
   }
   if (requestGeneration !== generation) return;
   waiting.remove();

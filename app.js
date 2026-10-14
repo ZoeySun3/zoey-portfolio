@@ -84,6 +84,15 @@ const publications = [
   {
     "year": "2026",
     "title": "YOLO-ITC: A New YOLO Method for Instance Segmentation of Individual Tree Crowns",
+    "aliases": ["YOLO-ITC", "YOLO ITC"],
+    "research": {
+      "basis": "Publisher abstract, not a full-text review",
+      "problem": "YOLO-ITC addresses detection and instance segmentation of small and medium tree crowns, including crowded stands.",
+      "data": "It uses aerial imagery from Wellington, New Zealand, covering isolated trees and dense forests in rural landscapes.",
+      "method": "The method adapts YOLOv7 with a detection design for smaller crowns, a densely connected backbone block that reuses features, and efficient attention for long-range dependencies.",
+      "result": "The abstract reports better detection and mask accuracy than the evaluated baselines.",
+      "limitation": "The abstract does not provide exact scores, improvement percentages, dataset size or training settings; these require the full paper."
+    },
     "authors": [
       "Ziyi Sun",
       "Bing Xue",
@@ -593,17 +602,61 @@ const topics = [
   }
 ];
 
-function answerLocally(question) {
+const publicationAliases = [[], ['YOLOv8-UT','YOLOv8 UT'], ['YOLOv8 feature fusion','feature fusion'], ['YOLOv8E'], ['DDT','deep distance transform'], ['Mask R-CNN','Mask RCNN'], ['SADnet'], ['ICycleGAN']];
+function normalizedTitle(text) { return String(text).toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); }
+
+// Match named papers before broad FAQ keywords such as "paper" or "research".
+function findPublications(question, history = []) {
+  const match = text => {
+    const q = ` ${normalizedTitle(text)} `;
+    return publications.filter((paper,index) => [paper.title,paper.url,...(paper.aliases || []),...(publicationAliases[index] || [])].some(alias => q.includes(` ${normalizedTitle(alias)} `)));
+  };
+  const direct = match(question);
+  if (direct.length) return direct;
+  // Carry a named paper into a follow-up, but never into unrelated work questions.
+  if (/\b(?:it|its|this paper|that paper|the paper|this study|that study)\b|^(?:and\s+)?(?:what|which|how)\b.*\b(?:dataset|method|methodology|results|limitations|baseline|accuracy|contribution)\b/i.test(question)) {
+    for (const message of [...history].reverse()) {
+      if (message.role !== 'user') continue;
+      const previous = match(message.content);
+      if (previous.length) return previous;
+    }
+  }
+  return [];
+}
+
+function answerLocally(question, history = []) {
   const q = String(question).toLowerCase().trim();
   const unknown = () => ({mode:'local', answer:'That detail isn’t in Zoey’s public profile, so I can’t confirm it. Please ask about her experience, research or skills, or contact Zoey directly.', source:'#contact'});
-  if (/[\u3400-\u9fff]/u.test(q) || /salary|visa|age\b|birthday|married|home address|phone|private|secret|ignore.*instructions/iu.test(q)) return unknown();
+  if (/[\u3400-\u9fff]/u.test(q) || /\bsalary\b|\bvisa\b|\bage\b|birthday|married|home address|phone|private|secret|ignore.*instructions/iu.test(q)) return unknown();
   if (/^(hi|hello|hey)[!.\s]*$/iu.test(q)) return {mode:'local', answer:'Hello. I can answer questions about Zoey’s professional experience, technical skills and publications. What would you like to know?', source:'#about'};
+  const papers = findPublications(question,history);
+  if (papers.length) {
+    const answers = papers.map(paper => {
+      const heading = `${paper.title} (${paper.year}).`;
+      if (/\bauthors?\b|who.*(?:wrote|written)/i.test(q)) return `${heading}\n\nAuthors: ${paper.authors.join(', ')}.`;
+      if (!paper.research) return `${heading}\n\nThis portfolio has the citation, but no verified research summary for this paper yet. Please read the publisher page for its methods and findings.`;
+      const note = paper.research;
+      const request = normalizedTitle(question).replace(normalizedTitle(paper.title), '');
+      const wantsSummary = /summary|summari[sz]e|overview|tell me about/i.test(request);
+      let body = [note.problem,note.data,note.method,note.result].join(' ');
+      if (!wantsSummary && /\b(?:map|precision|recall|f1|exact|percent|percentage|score|numbers?|metrics?|training settings|dataset size)\b|how much|how many/i.test(request)) body = note.limitation;
+      else if (!wantsSummary && /\b(?:dataset|data set|imagery|data)\b/i.test(request)) body = note.data;
+      else if (!wantsSummary && /\b(?:method|methodology|architecture|novelty|contribution)\b/i.test(request)) body = note.method;
+      else if (!wantsSummary && /\b(?:results?|findings?)\b/i.test(request)) body = `${note.result} ${note.limitation}`;
+      else if (!wantsSummary && /\blimitations?\b/i.test(request)) body = 'The available abstract is not enough to assess the study’s limitations. Please consult the full paper.';
+      return `${heading}\n\n${body}\n\nBased on the publisher abstract.`;
+    });
+    return {mode:'local',answer:answers.join('\n\n'),source:papers.length === 1 ? papers[0].url : '#research'};
+  }
+  if (/\b(?:summary|summari[sz]e|explain|findings|methodology)\b.*\b(?:paper|publication|study)\b|\b(?:paper|publication|study)\b.*\b(?:summary|findings|methodology)\b/i.test(q)) {
+    return {mode:'local',answer:'Which paper would you like to explore? Please include its title or DOI so I can find the relevant publication.',source:'#research'};
+  }
   const matches = topics.map(topic => ({...topic, score:topic.words.reduce((score, word) => score + (q.includes(word) ? (word.length > 5 ? 2 : 1) : 0), 0)})).filter(topic=>topic.score>0).sort((a,b)=>b.score-a.score);
   if (!matches.length) return unknown();
   return {mode:'local', answer:matches[0].answer, source:matches[0].source};
 }
 
-const allowedSources = ['#about','#experience','#skills','#education','#work','#research','#contact'];
+const allowedSources = ['#about','#experience','#skills','#education','#work','#research','#contact',...publications.map(paper=>paper.url)];
 
 function resolveChatApiBase(configuredBase, pageHref) {
   const page = new URL(pageHref);
@@ -810,6 +863,21 @@ projectDialog.addEventListener('close', () => {
   projectOpener?.focus({preventScroll: true});
 });
 
+// Revealing an email uses native <details>; copying is a progressive enhancement.
+$$('[data-copy-email]').forEach(button => {
+  button.hidden = false;
+  button.addEventListener('click', async () => {
+    const status = button.closest('.email-reveal').querySelector('.email-status');
+    button.disabled = true;
+    try {
+      await navigator.clipboard.writeText(button.dataset.copyEmail);
+      status.textContent = 'Email copied.';
+    } catch {
+      status.textContent = 'Select the email address above to copy it.';
+    } finally { button.disabled = false; }
+  });
+});
+
 const input = $('#chat-input');
 const messageLog = $('#chat-messages');
 const chatClient = createChatClient({apiBase:window.ZOEY_CONFIG?.chatApiBase, pageHref:location.href});
@@ -834,7 +902,7 @@ function showMode(ai, fallback = false, reason = '') {
 // must not permanently disable AI for this visit. No messages are stored locally.
 showMode(aiEnabled);
 
-function addMessage(role, text, source, waiting = false) {
+function addMessage(role, text, source, waiting = false, mode = '') {
   const message = element('div',`message ${role}${waiting ? ' waiting' : ''}`);
   if (role === 'assistant') {
     const badge = element('span','assistant-icon');
@@ -848,10 +916,12 @@ function addMessage(role, text, source, waiting = false) {
     badge.append(svg);
     message.append(badge);
   }
+  if (mode === 'local') message.append(element('span','message-kind','Saved profile answer'));
   message.append(element('p','',text));
   if (source && allowedSources.includes(source)) {
-    const link = element('a','message-source','Explore the profile ↗');
+    const link = element('a','message-source',source.startsWith('https:') ? 'Read the publication ↗' : 'Explore the profile ↗');
     link.href = source;
+    if (source.startsWith('https:')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
     message.append(link);
   }
   messageLog.append(message);
@@ -892,12 +962,12 @@ async function submitQuestion(question) {
       if (requestGeneration !== generation) return;
       showMode(result.mode === 'ai',result.mode !== 'ai',result.reason);
     } else {
-      result = answerLocally(text);
+      result = answerLocally(text,conversation);
       showMode(false);
     }
   } catch (error) {
     if (requestGeneration !== generation) return;
-    result = answerLocally(text);
+    result = answerLocally(text,conversation);
     showMode(false,true,error.reason);
   } finally {
     clearTimeout(timer);
@@ -905,7 +975,10 @@ async function submitQuestion(question) {
   }
   if (requestGeneration !== generation) return;
   waiting.remove();
-  addMessage('assistant', result.answer, result.source);
+  // Older backends may return an outdated prepared answer; use the current
+  // bundled knowledge for every local fallback and keep its mode explicit.
+  if (result.mode === 'local') result = {...result,...answerLocally(text,conversation)};
+  addMessage('assistant', result.answer, result.source,false,result.mode);
   conversation.push({role:'assistant',content:result.answer.slice(0,1200)});
   setBusy(false);
   input.focus({preventScroll:true});

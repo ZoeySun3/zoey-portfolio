@@ -812,10 +812,16 @@ projectDialog.addEventListener('close', () => {
 
 const input = $('#chat-input');
 const messageLog = $('#chat-messages');
-const initialMessage = messageLog.firstElementChild.cloneNode(true);
 const chatClient = createChatClient({apiBase:window.ZOEY_CONFIG?.chatApiBase, pageHref:location.href});
 let aiEnabled = chatClient.enabled, busy = false, controller, generation = 0;
 let conversation = [];
+
+function showConversation(visible) {
+  messageLog.hidden = !visible;
+  $('#chat-reset').hidden = !visible;
+  $('#chat-send').setAttribute('aria-expanded',String(visible));
+}
+showConversation(false);
 
 function showMode(ai, fallback = false, reason = '') {
   $('#chat-mode').textContent = ai ? 'AI assistant' : 'Profile Q&A';
@@ -830,7 +836,18 @@ showMode(aiEnabled);
 
 function addMessage(role, text, source, waiting = false) {
   const message = element('div',`message ${role}${waiting ? ' waiting' : ''}`);
-  if (role === 'assistant') message.append(element('span','message-label', waiting ? 'ONE MOMENT' : 'PORTFOLIO ASSISTANT'));
+  if (role === 'assistant') {
+    const badge = element('span','assistant-icon');
+    badge.setAttribute('role','img');
+    badge.setAttribute('aria-label',waiting ? 'Assistant is thinking' : 'Portfolio assistant');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    for (const [name,value] of Object.entries({viewBox:'0 0 24 24',fill:'none',stroke:'currentColor','stroke-width':'1.6','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true',focusable:'false'})) svg.setAttribute(name,value);
+    const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+    use.setAttribute('href','#icon-bot');
+    svg.append(use);
+    badge.append(svg);
+    message.append(badge);
+  }
   message.append(element('p','',text));
   if (source && allowedSources.includes(source)) {
     const link = element('a','message-source','Explore the profile ↗');
@@ -856,6 +873,7 @@ async function submitQuestion(question) {
   const requestGeneration = generation;
   input.value = '';
   input.style.height = '';
+  showConversation(true);
   addMessage('user',text);
   conversation.push({role:'user',content:text});
   conversation = conversation.slice(-9);
@@ -903,7 +921,8 @@ $('#chat-reset').addEventListener('click',()=>{
   generation++;
   controller?.abort();
   conversation=[];
-  messageLog.replaceChildren(initialMessage.cloneNode(true));
+  messageLog.replaceChildren();
+  showConversation(false);
   input.value=''; input.style.height='';
   showMode(aiEnabled); setBusy(false); input.focus({preventScroll:true});
 });

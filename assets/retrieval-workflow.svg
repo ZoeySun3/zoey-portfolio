@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="512" viewBox="0 0 960 512" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">GovGPT and PaperBoi — retrieval-augmented conversation</title>
+  <desc id="desc">Concept diagram: government information and scientific literature supply relevant passages to a source-grounded conversational answer.</desc>
+  <rect width="960" height="512" fill="#f0f4ec"/>
+  <rect x="32" y="32" width="896" height="448" rx="20" fill="#ffffff" stroke="#dbe4d8"/>
+  <g transform="translate(0 -128)" font-family="Avenir Next, Avenir, Segoe UI, Arial, sans-serif" font-weight="400">
+
+    <rect x="64" y="192" width="238" height="304" rx="12" fill="#f7f8f4" stroke="#dbe4d8"/>
+    <text x="84" y="232" fill="#263c30" font-size="23" font-weight="500">Source library</text>
+    <rect x="82" y="254" width="202" height="98" rx="8" fill="#ffffff" stroke="#dbe4d8"/>
+    <rect x="98" y="270" width="32" height="32" rx="6" fill="#e7efe5"/>
+    <path d="m105 282 9-5 9 5M105 294H123M108 285V291M114 285V291M120 285V291" stroke="#326449" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="140" y="284" fill="#263c30" font-size="18" font-weight="500">Government</text>
+    <text x="140" y="309" fill="#5b6d60" font-size="16">information</text>
+    <path d="M99 329H261" stroke="#dbe4d8" stroke-width="4" stroke-linecap="round"/>
+    <rect x="82" y="368" width="202" height="108" rx="8" fill="#ffffff" stroke="#dbe4d8"/>
+    <rect x="98" y="384" width="32" height="32" rx="6" fill="#e7efe5"/>
+    <path d="M106 391H116L122 397V409H106ZM116 391V398H122M110 402H118M110 405H115" stroke="#326449" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="140" y="398" fill="#263c30" font-size="18" font-weight="500">Scientific</text>
+    <text x="140" y="423" fill="#5b6d60" font-size="16">literature</text>
+    <path d="M99 448H261M99 458H217" stroke="#dbe4d8" stroke-width="4" stroke-linecap="round"/>
+
+    <path d="M310 344H342M335 337L342 344L335 351M568 344H600M593 337L600 344L593 351" stroke="#326449" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="352" y="229" width="206" height="230" rx="12" fill="#e7efe5" stroke="#9fb6a2"/>
+    <circle cx="386" cy="266" r="10" stroke="#326449" stroke-width="2"/>
+    <path d="m394 274 8 8" stroke="#326449" stroke-width="2" stroke-linecap="round"/>
+    <text x="372" y="316" fill="#244c36" font-size="26" font-weight="500">Retrieve</text>
+    <text x="372" y="346" fill="#326449" font-size="17">Relevant passages</text>
+    <rect x="372" y="367" width="166" height="28" rx="5" fill="#ffffff"/>
+    <rect x="372" y="405" width="166" height="28" rx="5" fill="#ffffff"/>
+    <circle cx="385" cy="381" r="3" fill="#326449"/>
+    <circle cx="385" cy="419" r="3" fill="#326449"/>
+    <path d="M398 381H523M398 419H508" stroke="#9fb6a2" stroke-width="4" stroke-linecap="round"/>
+
+    <rect x="610" y="192" width="286" height="304" rx="12" fill="#ffffff" stroke="#9fb6a2"/>
+    <path d="M634 212H652V225H642L636 230V225H634Z" stroke="#326449" stroke-width="1.6" stroke-linejoin="round"/>
+    <text x="666" y="232" fill="#263c30" font-size="23" font-weight="500">Respond</text>
+    <path d="M610 249H896" stroke="#dbe4d8"/>
+    <rect x="634" y="269" width="238" height="43" rx="8" fill="#f0f4ec"/>
+    <text x="649" y="296" fill="#5b6d60" font-size="18">Ask a question…</text>
+    <path d="M634 339H866M634 356H853M634 373H819" stroke="#dbe4d8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M634 356H742" stroke="#9fb6a2" stroke-width="6" stroke-linecap="round"/>
+    <text x="634" y="414" fill="#326449" font-size="16">Grounded in source material</text>
+    <rect x="634" y="431" width="92" height="33" rx="6" fill="#e7efe5"/>
+    <rect x="736" y="431" width="92" height="33" rx="6" fill="#e7efe5"/>
+    <text x="650" y="453" fill="#326449" font-size="15">Source 1</text>
+    <text x="752" y="453" fill="#326449" font-size="15">Source 2</text>
+
+    <path d="M64 536H896" stroke="#dbe4d8"/>
+    <text x="64" y="574" fill="#326449" font-size="18">01</text>
+    <text x="99" y="574" fill="#5b6d60" font-size="18">Source material</text>
+    <text x="352" y="574" fill="#326449" font-size="18">02</text>
+    <text x="387" y="574" fill="#5b6d60" font-size="18">Retrieve context</text>
+    <text x="650" y="574" fill="#326449" font-size="18">03</text>
+    <text x="685" y="574" fill="#5b6d60" font-size="18">Ground the answer</text>
+  </g>
+</svg>

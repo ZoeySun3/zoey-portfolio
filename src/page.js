@@ -234,7 +234,7 @@ function showMode(ai, fallback = false, reason = '') {
   $('#chat-mode').textContent = ai ? 'AI assistant' : 'Profile Q&A';
   $('.chat-status').classList.toggle('is-ai', ai);
   $('#chat-disclosure').textContent = ai
-    ? 'Questions are sent to Groq and answered from Zoey’s public profile. Answers may be imperfect.'
+    ? 'Questions are sent to DeepSeek and answered from Zoey’s public profile. Answers may be imperfect.'
     : fallback ? (reason === 'rate_limited' ? 'The AI assistant has reached its usage limit, so this is a prepared answer. Please try again later.' : 'The AI assistant is unavailable right now, so this is a prepared answer.') : 'Prepared answers from Zoey’s profile and publications.';
 }
 // Try the configured backend on every question: a cold start or a transient failure
@@ -257,16 +257,25 @@ function addMessage(role, text, source, waiting = false, mode = '') {
   }
   if (mode === 'local') message.append(element('span', 'message-kind', 'Prepared answer'));
   message.append(element('p', '', text));
-  if (source && allowedSources.includes(source)) {
-    const link = element('a', 'message-source', source.startsWith('https:') ? 'Read the publication' : 'See it on the page');
-    link.href = source;
-    if (source.startsWith('https:')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
-    message.append(link);
-  }
+  addSource(message, source);
   messageLog.append(message);
   messageLog.scrollTop = messageLog.scrollHeight;
   return message;
 }
+
+function addSource(message, source) {
+  if (!source || !allowedSources.includes(source)) return;
+  const link = element('a', 'message-source', source.startsWith('https:') ? 'Read the publication' : 'See it on the page');
+  link.href = source;
+  if (source.startsWith('https:')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+  message.append(link);
+}
+
+// Keeps the newest text in view while an answer streams in, unless the visitor scrolled up to read.
+function followStream(wasAtBottom) {
+  if (wasAtBottom) messageLog.scrollTop = messageLog.scrollHeight;
+}
+const atBottom = () => messageLog.scrollHeight - messageLog.scrollTop - messageLog.clientHeight < 40;
 
 function setBusy(value) {
   busy = value;
@@ -290,14 +299,32 @@ async function submitQuestion(question) {
   const waiting = addMessage('assistant', 'Looking through Zoey’s profile…', null, true);
   const requestController = new AbortController();
   controller = requestController;
-  const timer = setTimeout(() => requestController.abort(), chatClient.timeoutMs);
+  // The first piece may wait for a sleeping free backend; after that, a long pause means the stream stalled.
+  let timer = setTimeout(() => requestController.abort(), chatClient.timeoutMs);
   const wakeTimer = aiEnabled ? setTimeout(() => {
     if (requestGeneration === generation) waiting.querySelector('p').textContent = 'The assistant is taking a little longer to connect. Thanks for waiting…';
   }, 8000) : null;
+  let streaming = null;
+  const onDelta = answer => {
+    if (requestGeneration !== generation) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => requestController.abort(), 30000);
+    if (!streaming) {
+      clearTimeout(wakeTimer);
+      waiting.remove();
+      streaming = addMessage('assistant', '');
+      streaming.classList.add('streaming');
+      // Screen readers announce the finished answer once instead of every piece.
+      messageLog.setAttribute('aria-busy', 'true');
+    }
+    const follow = atBottom();
+    streaming.querySelector('p').textContent = answer.trimStart();
+    followStream(follow);
+  };
   let result;
   try {
     if (aiEnabled) {
-      result = await chatClient.ask(conversation, requestController.signal);
+      result = await chatClient.ask(conversation, {signal: requestController.signal, onDelta});
       if (requestGeneration !== generation) return;
       showMode(result.mode === 'ai', result.mode !== 'ai', result.reason);
     } else {
@@ -317,7 +344,18 @@ async function submitQuestion(question) {
   // Older backends may return an outdated prepared answer; use the bundled
   // knowledge for every local fallback and keep its mode explicit.
   if (result.mode === 'local') result = {...result, ...answerLocally(text, conversation)};
-  addMessage('assistant', result.answer, result.source, false, result.mode);
+  if (streaming && result.mode === 'ai') {
+    const follow = atBottom();
+    streaming.classList.remove('streaming');
+    streaming.querySelector('p').textContent = result.answer;
+    addSource(streaming, result.source);
+    followStream(follow);
+  } else {
+    // A prepared answer replaces a partial stream from a provider that failed midway.
+    streaming?.remove();
+    addMessage('assistant', result.answer, result.source, false, result.mode);
+  }
+  messageLog.removeAttribute('aria-busy');
   conversation.push({role: 'assistant', content: result.answer.slice(0, 1200)});
   setBusy(false);
   input.focus({preventScroll: true});
@@ -334,6 +372,7 @@ $('#chat-reset').addEventListener('click', () => {
   controller?.abort();
   conversation = [];
   messageLog.replaceChildren();
+  messageLog.removeAttribute('aria-busy');
   showConversation(false);
   input.value = '';
   input.style.height = '';

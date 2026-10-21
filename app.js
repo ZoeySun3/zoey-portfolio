@@ -622,22 +622,63 @@ function createChatClient({apiBase='', pageHref, fetchImpl=fetch} = {}) {
     enabled: Boolean(base),
     // Allow time for a free backend to wake up before the model's own timeout.
     timeoutMs: base && new URL(base).origin !== new URL(pageHref).origin ? 90000 : 25000,
-    async ask(messages, signal) {
+    // Streams the answer: onDelta receives the text so far each time a piece arrives.
+    async ask(messages, {signal, onDelta} = {}) {
       if (!base) throw new Error('AI backend is not configured.');
       const response = await fetchImpl(`${base}/api/chat`, {
         method:'POST', headers:{'Content-Type':'application/json'},
-        credentials:'omit', body:JSON.stringify({messages}), signal
+        credentials:'omit', body:JSON.stringify({messages, stream:true}), signal
       });
       if (!response.ok) {
         const error = new Error('AI assistant unavailable.');
         error.reason = response.status === 429 ? 'rate_limited' : 'provider_unavailable';
         throw error;
       }
-      const result = await response.json();
-      if (!['ai','local'].includes(result?.mode) || typeof result.answer !== 'string' || !result.answer.trim() || result.answer.length > 12000) throw new Error('Invalid response.');
-      return result;
+      // A backend without streaming answers with a single JSON object.
+      if (!(response.headers.get('content-type') || '').startsWith('text/event-stream')) return checkedResult(await response.json());
+      let answer = '', done = null;
+      await readChatEvents(response.body, event => {
+        if (event?.type === 'delta' && typeof event.text === 'string') {
+          answer += event.text;
+          if (answer.length > 12000) throw new Error('Invalid response.');
+          onDelta?.(answer);
+        } else if (event?.type === 'done') {
+          done = event;
+          return true;
+        }
+      });
+      if (!done) throw new Error('The answer stopped early.');
+      // A prepared answer replaces anything streamed before the provider failed.
+      return checkedResult(done.mode === 'ai' ? {mode:'ai', answer:answer.trim(), source:done.source} : done);
     }
   };
+}
+
+function checkedResult(result) {
+  if (!['ai','local'].includes(result?.mode) || typeof result.answer !== 'string' || !result.answer.trim() || result.answer.length > 12000) throw new Error('Invalid response.');
+  return {mode:result.mode, answer:result.answer, source:result.source, reason:result.reason};
+}
+
+// Reads "data: {json}" server-sent events until onEvent returns true or the stream ends.
+async function readChatEvents(body, onEvent) {
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+  try {
+    while (true) {
+      const {value, done} = await reader.read();
+      buffer += decoder.decode(value, {stream:!done});
+      const blocks = buffer.split('\n\n');
+      buffer = done ? '' : blocks.pop();
+      for (const block of blocks) {
+        const data = block.split('\n').filter(line => line.startsWith('data:')).map(line => line.slice(5).trim()).join('');
+        if (data && onEvent(JSON.parse(data))) return;
+      }
+      if (done) return;
+    }
+  } finally {
+    reader.cancel().catch(() => {});
+  }
 }
 
 
@@ -877,7 +918,7 @@ function showMode(ai, fallback = false, reason = '') {
   $('#chat-mode').textContent = ai ? 'AI assistant' : 'Profile Q&A';
   $('.chat-status').classList.toggle('is-ai', ai);
   $('#chat-disclosure').textContent = ai
-    ? 'Questions are sent to Groq and answered from Zoey’s public profile. Answers may be imperfect.'
+    ? 'Questions are sent to DeepSeek and answered from Zoey’s public profile. Answers may be imperfect.'
     : fallback ? (reason === 'rate_limited' ? 'The AI assistant has reached its usage limit, so this is a prepared answer. Please try again later.' : 'The AI assistant is unavailable right now, so this is a prepared answer.') : 'Prepared answers from Zoey’s profile and publications.';
 }
 // Try the configured backend on every question: a cold start or a transient failure
@@ -900,16 +941,25 @@ function addMessage(role, text, source, waiting = false, mode = '') {
   }
   if (mode === 'local') message.append(element('span', 'message-kind', 'Prepared answer'));
   message.append(element('p', '', text));
-  if (source && allowedSources.includes(source)) {
-    const link = element('a', 'message-source', source.startsWith('https:') ? 'Read the publication' : 'See it on the page');
-    link.href = source;
-    if (source.startsWith('https:')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
-    message.append(link);
-  }
+  addSource(message, source);
   messageLog.append(message);
   messageLog.scrollTop = messageLog.scrollHeight;
   return message;
 }
+
+function addSource(message, source) {
+  if (!source || !allowedSources.includes(source)) return;
+  const link = element('a', 'message-source', source.startsWith('https:') ? 'Read the publication' : 'See it on the page');
+  link.href = source;
+  if (source.startsWith('https:')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+  message.append(link);
+}
+
+// Keeps the newest text in view while an answer streams in, unless the visitor scrolled up to read.
+function followStream(wasAtBottom) {
+  if (wasAtBottom) messageLog.scrollTop = messageLog.scrollHeight;
+}
+const atBottom = () => messageLog.scrollHeight - messageLog.scrollTop - messageLog.clientHeight < 40;
 
 function setBusy(value) {
   busy = value;
@@ -933,14 +983,32 @@ async function submitQuestion(question) {
   const waiting = addMessage('assistant', 'Looking through Zoey’s profile…', null, true);
   const requestController = new AbortController();
   controller = requestController;
-  const timer = setTimeout(() => requestController.abort(), chatClient.timeoutMs);
+  // The first piece may wait for a sleeping free backend; after that, a long pause means the stream stalled.
+  let timer = setTimeout(() => requestController.abort(), chatClient.timeoutMs);
   const wakeTimer = aiEnabled ? setTimeout(() => {
     if (requestGeneration === generation) waiting.querySelector('p').textContent = 'The assistant is taking a little longer to connect. Thanks for waiting…';
   }, 8000) : null;
+  let streaming = null;
+  const onDelta = answer => {
+    if (requestGeneration !== generation) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => requestController.abort(), 30000);
+    if (!streaming) {
+      clearTimeout(wakeTimer);
+      waiting.remove();
+      streaming = addMessage('assistant', '');
+      streaming.classList.add('streaming');
+      // Screen readers announce the finished answer once instead of every piece.
+      messageLog.setAttribute('aria-busy', 'true');
+    }
+    const follow = atBottom();
+    streaming.querySelector('p').textContent = answer.trimStart();
+    followStream(follow);
+  };
   let result;
   try {
     if (aiEnabled) {
-      result = await chatClient.ask(conversation, requestController.signal);
+      result = await chatClient.ask(conversation, {signal: requestController.signal, onDelta});
       if (requestGeneration !== generation) return;
       showMode(result.mode === 'ai', result.mode !== 'ai', result.reason);
     } else {
@@ -960,7 +1028,18 @@ async function submitQuestion(question) {
   // Older backends may return an outdated prepared answer; use the bundled
   // knowledge for every local fallback and keep its mode explicit.
   if (result.mode === 'local') result = {...result, ...answerLocally(text, conversation)};
-  addMessage('assistant', result.answer, result.source, false, result.mode);
+  if (streaming && result.mode === 'ai') {
+    const follow = atBottom();
+    streaming.classList.remove('streaming');
+    streaming.querySelector('p').textContent = result.answer;
+    addSource(streaming, result.source);
+    followStream(follow);
+  } else {
+    // A prepared answer replaces a partial stream from a provider that failed midway.
+    streaming?.remove();
+    addMessage('assistant', result.answer, result.source, false, result.mode);
+  }
+  messageLog.removeAttribute('aria-busy');
   conversation.push({role: 'assistant', content: result.answer.slice(0, 1200)});
   setBusy(false);
   input.focus({preventScroll: true});
@@ -977,6 +1056,7 @@ $('#chat-reset').addEventListener('click', () => {
   controller?.abort();
   conversation = [];
   messageLog.replaceChildren();
+  messageLog.removeAttribute('aria-busy');
   showConversation(false);
   input.value = '';
   input.style.height = '';

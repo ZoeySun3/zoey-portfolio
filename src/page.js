@@ -65,7 +65,7 @@ if ('IntersectionObserver' in window) {
 
 // Gentle reveal on scroll; removed afterwards so hover transitions behave normally.
 if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const targets = $$('.section-head, .ask-panel, .project, .role, .pub, .talks li, .tool-group, .degree, .offline, .stat');
+  const targets = $$('.section-head, .ask-panel, .project, .role, .pub, .tool-group, .degree');
   const reveal = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -83,6 +83,20 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
     target.style.transitionDelay = `${Math.min(siblings.indexOf(target) % 4, 3) * 70}ms`;
     target.classList.add('reveal');
     reveal.observe(target);
+  });
+}
+
+// Publications: the three most recent are shown until the reader asks for the rest.
+const pubsToggle = $('.pubs-toggle');
+if (pubsToggle) {
+  const researchBody = pubsToggle.closest('.research-body');
+  const moreLabel = pubsToggle.textContent;
+  pubsToggle.hidden = false;
+  pubsToggle.addEventListener('click', () => {
+    const expanded = researchBody.classList.toggle('is-expanded');
+    pubsToggle.setAttribute('aria-expanded', String(expanded));
+    pubsToggle.textContent = expanded ? 'Show fewer' : moreLabel;
+    if (!expanded && pubsToggle.getBoundingClientRect().top < 0) pubsToggle.scrollIntoView({block: 'center'});
   });
 }
 

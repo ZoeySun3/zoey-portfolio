@@ -5,18 +5,18 @@
 // Shared with the chat backend (zoey-chat-api/public/content.js); keep the exports unchanged.
 const profile = {
   "name": "Zoey (Ziyi) Sun",
-  "role": "AI and Data Scientist",
+  "role": "Data Scientist",
   "employer": "Dragonfly Data Science",
   "location": "Wellington, New Zealand",
   "email": "ziyisun27@gmail.com",
-  "summary": "AI and data scientist with a PhD in artificial intelligence, working on computer vision, remote sensing and LLM applications. Builds models that read landscapes from aerial imagery and LiDAR, and has worked on retrieval-augmented assistants and LLM evaluation.",
+  "summary": "Applied AI scientist with a PhD in artificial intelligence and industry experience, building practical, reliable AI solutions from early prototypes to real-world deployment. Builds models that read landscapes from aerial imagery and LiDAR, and has worked on retrieval-augmented assistants and LLM evaluation.",
   "education": [
     "PhD in Artificial Intelligence, Victoria University of Wellington, Oct 2021–Feb 2025.",
     "M.S. in Computer Application Technology, Shandong University of Finance and Economics, Sep 2018–Jun 2021.",
     "B.S. in Digital Media Technology, Shandong University of Finance and Economics, Sep 2014–Jun 2018."
   ],
   "experience": [
-    "Dragonfly Data Science, AI and Data Scientist, Nov 2025–present. Works on the MBIE-funded New Zealand–NASA Catalyst: Strategic project “Integrating machine learning and remote sensing for dynamic forest mapping,” in partnership with NASA Earth Exchange (NEX). Develops models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation; models predict synthetic canopy height models (synCHMs) where LiDAR is unavailable. Researches tree crown segmentation and forest classification; builds reproducible training, inference and deployment workflows with Git, CI and cloud infrastructure. Collaborates with a multidisciplinary team through updates, reports and workshops. She is employed by Dragonfly, not NASA.",
+    "Dragonfly Data Science, Data Scientist, Nov 2025–present. Works on the MBIE-funded New Zealand–NASA Catalyst: Strategic project “Integrating machine learning and remote sensing for dynamic forest mapping,” in partnership with NASA Earth Exchange (NEX). Develops models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation; models predict synthetic canopy height models (synCHMs) where LiDAR is unavailable. Researches tree crown segmentation and forest classification; builds reproducible training, inference and deployment workflows with Git, CI and cloud infrastructure. Collaborates with a multidisciplinary team through updates, reports and workshops. She is employed by Dragonfly, not NASA.",
     "ElementX, R&D Intern, Auckland, Aug–Oct 2025. Contributed to AI chatbot backends, SQL data management and structured LLM response evaluation. Built end-to-end n8n workflows that generate proposals and supporting documents with AI, route drafts for human review and deliver approved files. Stack: LLMs, SQL, Ruby, n8n.",
     "Victoria University of Wellington, Research Assistant, Mar–Aug 2025. Extended individual tree crown instance segmentation research with Manaaki Whenua – Landcare Research.",
     "Callaghan Innovation, Digital & AI Intern, Oct 2024–Mar 2025. Contributed to GovGPT (plain-language access to New Zealand government services and policy) and PaperBoi (a scientific literature assistant for research from New Zealand institutions). Improved RAG and semantic retrieval for more relevant results, using Python, GitHub, Azure AI Studio and AWS in an Agile team.",
@@ -362,7 +362,7 @@ const topics = [
       "forest",
       "canopy"
     ],
-    "answer": "Zoey is an AI and Data Scientist at Dragonfly Data Science (November 2025–present). She develops models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation, so canopy height can be mapped where LiDAR isn’t available. The work is part of an MBIE-funded New Zealand–NASA research partnership with NASA Earth Exchange; she is employed by Dragonfly. She also builds reproducible training and inference pipelines with Git, CI and cloud infrastructure.",
+    "answer": "Zoey is a Data Scientist at Dragonfly Data Science (November 2025–present). She develops models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation, so canopy height can be mapped where LiDAR isn’t available. The work is part of an MBIE-funded New Zealand–NASA research partnership with NASA Earth Exchange; she is employed by Dragonfly. She also builds reproducible training and inference pipelines with Git, CI and cloud infrastructure.",
     "source": "#work"
   },
   {
@@ -489,7 +489,7 @@ const topics = [
       "worked",
       "jobs"
     ],
-    "answer": "Zoey is an AI and Data Scientist at Dragonfly Data Science. Before that she was an R&D intern at ElementX (LLM evaluation and automation), a research assistant at Victoria University of Wellington, a Digital & AI intern at Callaghan Innovation (GovGPT and PaperBoi), and a PhD researcher in computer vision. Earlier, she worked on industrial computer vision for weld-seam positioning and glass-defect detection in China.",
+    "answer": "Zoey is a Data Scientist at Dragonfly Data Science. Before that she was an R&D intern at ElementX (LLM evaluation and automation), a research assistant at Victoria University of Wellington, a Digital & AI intern at Callaghan Innovation (GovGPT and PaperBoi), and a PhD researcher in computer vision. Earlier, she worked on industrial computer vision for weld-seam positioning and glass-defect detection in China.",
     "source": "#experience"
   },
   {
@@ -708,7 +708,7 @@ if ('IntersectionObserver' in window) {
 
 // Gentle reveal on scroll; removed afterwards so hover transitions behave normally.
 if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const targets = $$('.section-head, .ask-panel, .project, .role, .pub, .talks li, .tool-group, .degree, .offline, .stat');
+  const targets = $$('.section-head, .ask-panel, .project, .role, .pub, .tool-group, .degree');
   const reveal = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -726,6 +726,20 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
     target.style.transitionDelay = `${Math.min(siblings.indexOf(target) % 4, 3) * 70}ms`;
     target.classList.add('reveal');
     reveal.observe(target);
+  });
+}
+
+// Publications: the three most recent are shown until the reader asks for the rest.
+const pubsToggle = $('.pubs-toggle');
+if (pubsToggle) {
+  const researchBody = pubsToggle.closest('.research-body');
+  const moreLabel = pubsToggle.textContent;
+  pubsToggle.hidden = false;
+  pubsToggle.addEventListener('click', () => {
+    const expanded = researchBody.classList.toggle('is-expanded');
+    pubsToggle.setAttribute('aria-expanded', String(expanded));
+    pubsToggle.textContent = expanded ? 'Show fewer' : moreLabel;
+    if (!expanded && pubsToggle.getBoundingClientRect().top < 0) pubsToggle.scrollIntoView({block: 'center'});
   });
 }
 

@@ -1,23 +1,31 @@
-// Public profile facts from the supplied CVs and Zoey’s role correction.
+// Public profile facts from Zoey’s CVs (data scientist.pdf, Xpert-CV-ZH.pdf) and her confirmed role.
+// Shared with the chat backend (zoey-chat-api/public/content.js); keep the exports unchanged.
 export const profile = {
   "name": "Zoey (Ziyi) Sun",
   "role": "AI and Data Scientist",
   "employer": "Dragonfly Data Science",
   "location": "Wellington, New Zealand",
   "email": "ziyisun27@gmail.com",
+  "summary": "AI and data scientist with a PhD in artificial intelligence, working on computer vision, remote sensing and LLM applications. Builds models that read landscapes from aerial imagery and LiDAR, and has worked on retrieval-augmented assistants and LLM evaluation.",
   "education": [
     "PhD in Artificial Intelligence, Victoria University of Wellington, Oct 2021–Feb 2025.",
     "M.S. in Computer Application Technology, Shandong University of Finance and Economics, Sep 2018–Jun 2021.",
     "B.S. in Digital Media Technology, Shandong University of Finance and Economics, Sep 2014–Jun 2018."
   ],
   "experience": [
-    "Dragonfly Data Science, AI and Data Scientist, Nov 2025–present. Contributes to the MBIE-funded New Zealand–NASA Catalyst: Strategic project “Integrating machine learning and remote sensing for dynamic forest mapping,” in partnership with NASA Earth Exchange (NEX). Predicts tree height and forest characteristics from aerial imagery with LiDAR training and validation. Researches tree crown segmentation and forest classification; builds reproducible training, inference and deployment workflows with Git, CI and cloud infrastructure. Collaborates with a multidisciplinary team. She is employed by Dragonfly, not NASA.",
-    "ElementX, R&D Intern, Aug–Oct 2025. Contributed to AI chatbot backends, SQL data management and structured LLM response evaluation. Built n8n AI proposal and document workflows with human review before delivery. Stack: LLMs, SQL, Ruby, n8n.",
-    "Victoria University of Wellington, Research Assistant, Mar–Aug 2025. Extended individual tree crown segmentation research with Manaaki Whenua – Landcare Research.",
-    "Callaghan Innovation, Digital & AI Intern, Oct 2024–Mar 2025. Contributed to GovGPT and PaperBoi, conversational assistants for government information and scientific literature. Improved RAG workflows using Python, GitHub, Azure AI Studio and AWS.",
-    "Victoria University of Wellington, PhD Researcher, Oct 2021–Feb 2025. Collaborated with Manaaki Whenua – Landcare Research, supervised by Mengjie Zhang and Bing Xue. Developed CNN and Transformer models, large aerial imagery pipelines and distributed multi-GPU training. The résumé reports 10% improved detection and 8% improved segmentation accuracy; baseline details are not supplied.",
-    "Applied AI projects in China: automotive wheel hub weld seam positioning (May–Nov 2020) with FAW and China National Heavy Duty Truck Group; glass flaw detection (Feb–Aug 2021). Contributed datasets, YOLO models, client demonstrations and practical integration.",
+    "Dragonfly Data Science, AI and Data Scientist, Nov 2025–present. Works on the MBIE-funded New Zealand–NASA Catalyst: Strategic project “Integrating machine learning and remote sensing for dynamic forest mapping,” in partnership with NASA Earth Exchange (NEX). Develops models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation; models predict synthetic canopy height models (synCHMs) where LiDAR is unavailable. Researches tree crown segmentation and forest classification; builds reproducible training, inference and deployment workflows with Git, CI and cloud infrastructure. Collaborates with a multidisciplinary team through updates, reports and workshops. She is employed by Dragonfly, not NASA.",
+    "ElementX, R&D Intern, Auckland, Aug–Oct 2025. Contributed to AI chatbot backends, SQL data management and structured LLM response evaluation. Built end-to-end n8n workflows that generate proposals and supporting documents with AI, route drafts for human review and deliver approved files. Stack: LLMs, SQL, Ruby, n8n.",
+    "Victoria University of Wellington, Research Assistant, Mar–Aug 2025. Extended individual tree crown instance segmentation research with Manaaki Whenua – Landcare Research.",
+    "Callaghan Innovation, Digital & AI Intern, Oct 2024–Mar 2025. Contributed to GovGPT (plain-language access to New Zealand government services and policy) and PaperBoi (a scientific literature assistant for research from New Zealand institutions). Improved RAG and semantic retrieval for more relevant results, using Python, GitHub, Azure AI Studio and AWS in an Agile team.",
+    "Victoria University of Wellington, PhD Researcher, Oct 2021–Feb 2025. Collaborated with Manaaki Whenua – Landcare Research, supervised by Mengjie Zhang and Bing Xue. Designed CNN and Transformer models for detection and instance segmentation of individual tree crowns in aerial imagery (YOLO-ITC, YOLOv8E, feature-fusion YOLOv8, YOLOv8-UT, improved Mask R-CNN); built large aerial imagery pipelines and distributed multi-GPU training. Her CV reports a 10% improvement in tree crown detection accuracy and 8% in segmentation accuracy over existing methods; exact baselines are in the papers.",
+    "Applied AI projects in China: automotive wheel hub weld seam positioning (May–Nov 2020) with FAW and China National Heavy Duty Truck Group — data collection, cleaning, labelling and YOLO models; supported deployment and client demonstrations; 99.98% detection rate with positional accuracy under 0.3 cm. Glass flaw detection (Feb–Aug 2021) — dataset and computer vision pipeline with YOLO; over 93% accuracy across flat, specialty and decorative glass; presented to the client and supported integration.",
     "Master’s research, Sep 2018–Jun 2021: single-image dehazing with semi-supervised learning, attention mechanisms and CycleGAN. SADnet combines channel, spatial and self-attention. ICycleGAN integrates iterative dehazing into CycleGAN to preserve texture and colour."
+  ],
+  "talks": [
+    "2023, IVCNZ 2023 (Palmerston North): An Improved Mask R-CNN for Instance Segmentation of Tree Crowns in Aerial Imagery.",
+    "2023, IEEE Postgraduate Symposium (Wellington): YOLO for Instance Segmentation of Individual Tree Crowns.",
+    "2022, IEEE Postgraduate Symposium (Wellington): Neural Architecture Search for Image Segmentation.",
+    "2021, IEEE Postgraduate Symposium (Wellington): Evolutionary Computation for Image Analysis."
   ],
   "skills": [
     "Python",
@@ -33,16 +41,20 @@ export const profile = {
     "Transformers",
     "U-Net",
     "YOLO",
+    "Mask R-CNN",
     "Pandas",
     "NumPy",
     "SciPy",
     "aerial imagery",
     "LiDAR",
     "remote sensing",
+    "canopy height prediction",
     "RAG",
+    "semantic retrieval",
     "LLM evaluation",
     "n8n",
     "Git",
+    "GitHub",
     "CI",
     "multi-GPU training",
     "Azure AI Studio",
@@ -51,7 +63,6 @@ export const profile = {
     "Power BI",
     "Matplotlib",
     "Seaborn",
-    "semantic retrieval",
     "image dehazing",
     "statistical analysis",
     "experimental evaluation",
@@ -60,6 +71,7 @@ export const profile = {
     "Claude Code",
     "Gemini"
   ],
+  "communication": "Research publications, conference talks, technical reports, workshops, client demonstrations, AI/ML tutoring and multidisciplinary collaboration.",
   "interests": [
     "fishing",
     "hiking",
@@ -200,14 +212,14 @@ export const publications = [
 
 export const projects = {
   "forest": {
-    "title": "Machine learning for dynamic forest mapping",
+    "title": "Dynamic forest mapping",
     "meta": "Dragonfly Data Science · Nov 2025–present",
-    "description": "At Dragonfly Data Science, I contribute to an MBIE Catalyst project with NASA Earth Exchange (NEX), combining machine learning and remote sensing to map forest structure and monitor change across New Zealand.",
-    "context": "LiDAR provides detailed measurements of forest structure, but coverage is incomplete. The project uses models trained on paired aerial imagery and LiDAR-derived canopy heights to predict synthetic canopy height models (synCHMs) in areas without LiDAR coverage.",
+    "summary": "Predicting canopy height from aerial imagery, trained and validated against LiDAR, so forest structure can be mapped wherever LiDAR doesn’t reach. Part of a New Zealand–NASA research partnership with NASA Earth Exchange (NEX).",
     "contributions": [
-      "Develop and evaluate machine learning models for tree-height prediction from aerial imagery, using LiDAR for training and validation.",
-      "Research tree crown segmentation and forest classification.",
-      "Build reproducible data preparation, training, validation and inference workflows with Git, continuous integration and cloud infrastructure."
+      "Develop and evaluate models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation.",
+      "Research individual tree-crown segmentation and forest classification across LiDAR and aerial imagery.",
+      "Build reproducible pipelines for training and inference datasets, and test, train, validate and deploy models with Git, continuous integration and cloud infrastructure.",
+      "Share findings with a multidisciplinary team through project updates, reports, workshops and scientific outputs."
     ],
     "skills": [
       "Machine learning",
@@ -217,193 +229,89 @@ export const projects = {
       "U-Net",
       "Git / CI",
       "Cloud infrastructure"
-    ],
-    "cardTitle": "Dynamic forest mapping",
-    "category": "Current work",
-    "summary": "Predicting canopy height from aerial imagery, with LiDAR for training and validation.",
-    "approach": [
-      "Prepare and align aerial imagery with LiDAR-derived canopy height models.",
-      "Train and evaluate models that infer forest structure from imagery, with representative training data and validation.",
-      "Combine structural mapping with satellite observations to support monitoring of forest growth and disturbance over time."
-    ],
-    "outcomeTitle": "The wider goal",
-    "outcome": "The project aims to support a regularly updated national forest monitoring system for New Zealand, with applications in forest management, conservation and carbon assessment. My work focuses on developing and evaluating the machine learning methods that contribute to this goal.",
-    "image": "assets/dragonfly-canopy.png",
-    "imageAlt": "Aerial imagery beside a model-predicted synthetic canopy height map",
-    "imageCaption": "Project illustration: aerial imagery and a model-predicted synthetic canopy height map (synCHM).",
-    "imageWidth": 249,
-    "imageHeight": 240,
-    "imageClass": "canopy",
-    "cardSkills": [
-      "Machine learning",
-      "Aerial imagery",
-      "LiDAR"
     ]
   },
   "crowns": {
-    "title": "Object detection and instance segmentation",
-    "meta": "PhD research · 2021–2025",
-    "description": "My PhD in Artificial Intelligence at Victoria University of Wellington focused on object detection and instance segmentation in aerial imagery. Individual tree crowns provided a challenging application: they overlap, vary in size, and can be difficult to distinguish from their surroundings.",
-    "context": "Working with Manaaki Whenua – Landcare Research, and supervised by Mengjie Zhang and Bing Xue, I developed CNN- and Transformer-based approaches to identifying objects and delineating individual instances. This research continued during my research assistant role in 2025.",
+    "title": "Finding every tree: tree-crown detection and instance segmentation",
+    "meta": "PhD research, Victoria University of Wellington · 2021–2025",
+    "summary": "New YOLO and Mask R-CNN variants that detect and outline individual tree crowns in aerial imagery, even where canopies overlap. +10% detection and +8% segmentation accuracy; six papers.",
     "contributions": [
-      "Designed, trained, and optimised models for tree detection and instance segmentation.",
-      "Built pipelines for large aerial imagery datasets and distributed multi-GPU training.",
-      "Evaluated model performance with statistical analysis and published findings in journals and conferences."
+      "Designed YOLO-ITC (YOLOv7 with a small/medium-crown detection design, dense feature reuse and efficient attention), YOLOv8E (better positive-sample selection and a leaner network), a feature-fusion YOLOv8 and the cross-environment YOLOv8-UT training approach.",
+      "Built data pipelines for large aerial-imagery datasets and distributed multi-GPU training.",
+      "Evaluated models with statistical analysis against established baselines, improving crown detection accuracy by 10% and segmentation accuracy by 8%.",
+      "Published six papers and presented at IVCNZ 2023 and the IEEE Postgraduate Symposium."
     ],
     "skills": [
       "Python",
       "PyTorch",
       "YOLO",
+      "Mask R-CNN",
       "Transformers",
-      "Computer vision",
-      "Instance segmentation"
-    ],
-    "image": "assets/tree-research.png",
-    "link": "#research",
-    "linkLabel": "Explore the publications",
-    "cardTitle": "Object detection & segmentation",
-    "category": "Doctoral research",
-    "summary": "Teaching models to find individual objects and trace their boundaries in complex aerial images.",
-    "approach": [
-      "Investigate detection and instance segmentation using YOLO, Mask R-CNN and Transformer-based methods.",
-      "Explore feature fusion and training strategies for varied imaging conditions and environments.",
-      "Prepare large aerial imagery datasets, train on multiple GPUs, and evaluate the resulting models."
-    ],
-    "outcomeTitle": "Research outputs",
-    "outcome": "The work includes improved Mask R-CNN, YOLOv8E, YOLO-ITC and feature fusion methods, with journal and conference publications. The full publication list includes authors, venues and links to the papers.",
-    "imageAlt": "Original aerial image beside detected tree crowns with bounding boxes and red instance masks",
-    "imageCaption": "Original research example: aerial imagery with object detections and individual instance masks.",
-    "imageWidth": 1306,
-    "imageHeight": 661,
-    "imageClass": "research",
-    "cardSkills": [
-      "Computer vision",
-      "YOLO",
       "Instance segmentation"
     ]
   },
   "rag": {
     "title": "GovGPT and PaperBoi: retrieval-augmented assistants",
-    "meta": "Callaghan Innovation · 2024–2025",
-    "description": "I contributed to GovGPT and PaperBoi, two conversational AI projects that make specialised information easier to explore. GovGPT helps New Zealanders navigate government services and policy information, while PaperBoi supports discovery and knowledge transfer from scientific literature.",
-    "context": "As a Digital & AI Intern at Callaghan Innovation, I worked with an Agile team to improve the retrieval of relevant government and scientific information for conversational AI.",
+    "meta": "Callaghan Innovation · Oct 2024–Mar 2025",
+    "summary": "Retrieval-augmented assistants that help New Zealanders find government services and policy in plain language, and explore research from New Zealand institutions.",
     "contributions": [
-      "Implemented and improved retrieval-augmented generation (RAG) workflows.",
-      "Worked on retrieval relevance and the quality of government and scientific information returned to users.",
-      "Contributed to cloud-based AI workflows using Azure AI Studio and AWS."
+      "Implemented and improved retrieval-augmented generation (RAG) workflows so answers drew on more relevant government and scientific sources.",
+      "Worked on semantic retrieval and the relevance of information returned to users.",
+      "Contributed to cloud-based AI workflows on Azure AI Studio and AWS in an Agile team."
     ],
     "skills": [
       "Python",
       "LLMs",
       "RAG",
+      "Semantic retrieval",
       "Azure AI Studio",
       "AWS",
       "GitHub"
-    ],
-    "cardTitle": "GovGPT & PaperBoi",
-    "category": "Conversational AI",
-    "summary": "Making government information and scientific literature easier to explore through conversation.",
-    "image": "assets/retrieval-workflow.svg",
-    "imageAlt": "Workflow diagram showing government information and scientific literature passing through retrieval into a source-grounded answer",
-    "imageCaption": "Concept diagram of source-grounded conversation across government information and scientific literature; not a product screenshot.",
-    "imageWidth": 960,
-    "imageHeight": 512,
-    "imageClass": "workflow",
-    "cardSkills": [
-      "Python",
-      "RAG",
-      "Azure AI Studio",
-      "AWS"
-    ],
-    "outcomeTitle": "Focus",
-    "outcome": "Improving retrieval relevance and connecting useful source material to conversational AI responses."
+    ]
   },
   "agents": {
     "title": "LLM evaluation and document automation",
-    "meta": "ElementX · 2025",
-    "description": "During my R&D internship at ElementX, I worked on agentic AI across conversational interfaces, model evaluation, and automated document workflows.",
-    "context": "My work combined backend development with practical evaluation and automation, including AI-assisted proposal generation with human review.",
+    "meta": "ElementX · Aug–Oct 2025",
+    "summary": "Structured testing of chatbot answers, plus n8n workflows that draft proposals with AI and route every draft through human review before it is sent.",
     "contributions": [
-      "Contributed to chatbot backend development and SQL application data management.",
+      "Contributed to chatbot backend development and used SQL to manage application data.",
       "Evaluated LLM response accuracy through structured testing and evaluation research.",
-      "Built end-to-end n8n workflows to generate proposal drafts, route them for review, and deliver approved documents."
+      "Built end-to-end n8n workflows that generate proposals and supporting documents with AI, route drafts for human review, and deliver approved files."
     ],
     "skills": [
       "LLMs",
+      "LLM evaluation",
       "SQL",
       "Ruby",
       "n8n",
-      "LLM evaluation",
       "Workflow automation"
-    ],
-    "cardTitle": "LLM evaluation & document workflows",
-    "category": "AI workflows",
-    "summary": "Evaluating chatbot responses and connecting AI-generated drafts with human review and delivery.",
-    "image": "assets/document-workflow.svg",
-    "imageAlt": "Workflow diagram showing structured response evaluation alongside drafts, human review and document delivery",
-    "imageCaption": "Concept diagram of response evaluation and human-reviewed document automation; not a product screenshot.",
-    "imageWidth": 960,
-    "imageHeight": 512,
-    "imageClass": "workflow",
-    "cardSkills": [
-      "LLMs",
-      "SQL",
-      "Ruby",
-      "n8n"
-    ],
-    "outcomeTitle": "Focus",
-    "outcome": "Bringing structured evaluation and human review into practical AI-assisted workflows."
+    ]
   },
   "inspection": {
-    "title": "Visual inspection and positioning",
-    "cardTitle": "Visual inspection & positioning",
-    "meta": "Industrial applications · 2020–2021",
-    "category": "Applied computer vision",
-    "summary": "Finding weld seams and glass defects with computer vision in industrial settings.",
-    "description": "I worked on two industrial computer vision projects: positioning wheel-hub weld seams and identifying defects in glass. My contributions covered data collection and annotation, detection model development, and practical integration.",
-    "context": "The wheel-hub project ran from May to November 2020 with FAW and China National Heavy Duty Truck Group. The glass-defect project followed from February to August 2021.",
+    "title": "Industrial visual inspection",
+    "meta": "Applied AI projects, China · 2020–2021",
+    "summary": "YOLO detectors that locate weld seams on wheel hubs (99.98% detection, under 0.3 cm positioning error) and find flaws in glass (over 93% accuracy), taken from raw factory images to client deployment.",
     "contributions": [
-      "Contributed to collecting, preparing and annotating image datasets for the detection tasks.",
-      "Developed YOLO-based detection models for weld-seam positioning and glass flaws.",
-      "Supported client demonstrations and practical integration of computer vision into industrial workflows."
+      "Weld seams (May–Nov 2020, with FAW and China National Heavy Duty Truck Group): data collection, cleaning and labelling, YOLO model development, deployment support and client demonstrations.",
+      "Glass flaws (Feb–Aug 2021): built the dataset and computer vision pipeline — collection, image processing, labelling and YOLO models — then presented results and supported integration.",
+      "Results: 99.98% weld-seam detection rate with positioning error under 0.3 cm; over 93% glass-flaw accuracy across flat, specialty and decorative glass."
     ],
     "skills": [
       "Computer vision",
       "YOLO",
-      "Dataset development",
-      "Object detection"
-    ],
-    "cardSkills": [
-      "Computer vision",
-      "YOLO",
-      "Object detection"
-    ],
-    "image": "assets/weld-inspection.png",
-    "imageAlt": "Wheel-hub manufacturing images and a detected weld-seam region",
-    "imageCaption": "Original project images: industrial wheel-hub inspection and weld-seam positioning.",
-    "imageWidth": 2062,
-    "imageHeight": 720,
-    "imageClass": "industrial",
-    "gallery": [
-      {
-        "image": "assets/glass-detection.png",
-        "alt": "Glass samples with an inset showing a detected defect",
-        "caption": "Original project images: glass-defect detection."
-      }
+      "Object detection",
+      "Dataset building",
+      "Deployment"
     ]
   },
   "dehazing": {
     "title": "Single-image dehazing",
-    "cardTitle": "Single-image dehazing",
-    "meta": "Master’s research · 2018–2021",
-    "category": "Image restoration",
-    "summary": "Exploring how deep learning can recover colour, texture and detail in hazy images.",
-    "description": "My master’s research at Shandong University of Finance and Economics explored single-image dehazing: recovering a clearer image from one degraded by haze. The research combined semi-supervised learning, attention mechanisms and image-to-image translation.",
-    "context": "The challenge is to improve visibility while preserving realistic colours and fine image details. This work led to the SADnet and ICycleGAN publications.",
+    "meta": "Master’s research, Shandong University of Finance and Economics · 2018–2021",
+    "summary": "Attention-based and CycleGAN methods that recover colour, contrast and fine texture from a single hazy photograph.",
     "contributions": [
-      "Developed SADnet, a semi-supervised dehazing method combining channel, spatial and self-attention.",
-      "Developed ICycleGAN, integrating iterative dehazing with CycleGAN to preserve texture and colour.",
-      "Conducted image restoration experiments and documented the methods in peer-reviewed publications."
+      "SADnet: a semi-supervised dehazing network combining channel, spatial and self-attention (ACM TOMM, 2022).",
+      "ICycleGAN: integrates an iterative dehazing model into CycleGAN to preserve texture and colour (CVIU, 2021).",
+      "Designed and ran the image-restoration experiments and wrote up both methods for peer-reviewed journals."
     ],
     "skills": [
       "Deep learning",
@@ -411,27 +319,6 @@ export const projects = {
       "Attention",
       "CycleGAN",
       "Image restoration"
-    ],
-    "cardSkills": [
-      "Deep learning",
-      "Attention",
-      "CycleGAN"
-    ],
-    "image": "assets/dehazing-example.webp",
-    "imageAlt": "Illustrative landscape comparison: a hazy mountain scene on the left and a clear mountain lake on the right",
-    "imageCaption": "Dehazing illustration selected for this portfolio; not an experimental comparison from SADnet or ICycleGAN.",
-    "imageWidth": 960,
-    "imageHeight": 640,
-    "imageClass": "dehazing",
-    "links": [
-      {
-        "label": "Read SADnet",
-        "url": "https://doi.org/10.1145/3478457"
-      },
-      {
-        "label": "Read ICycleGAN",
-        "url": "https://doi.org/10.1016/j.cviu.2020.103133"
-      }
     ]
   }
 };
@@ -439,13 +326,24 @@ export const projects = {
 // A finite English-language FAQ; no generative model is simulated.
 const topics = [
   {
-    "words": ["projects", "portfolio projects", "selected work", "case studies"],
-    "answer": "Zoey’s selected projects cover six areas: dynamic forest mapping at Dragonfly; PhD research in object detection and instance segmentation; GovGPT and PaperBoi at Callaghan Innovation; LLM evaluation and document workflows at ElementX; industrial visual inspection; and single-image dehazing. The project gallery includes background, contributions, methods and images for each.",
+    "words": [
+      "projects",
+      "portfolio projects",
+      "selected work",
+      "case studies",
+      "portfolio"
+    ],
+    "answer": "Zoey’s selected work covers six projects: dynamic forest mapping at Dragonfly Data Science; her PhD on tree-crown detection and instance segmentation; GovGPT and PaperBoi at Callaghan Innovation; LLM evaluation and document automation at ElementX; industrial visual inspection in China; and single-image dehazing from her master’s research. Each has a full case study on the page.",
     "source": "#work"
   },
   {
-    "words": ["dehazing", "haze", "image restoration"],
-    "answer": "Zoey’s master’s research explored single-image dehazing with semi-supervised learning, attention mechanisms and CycleGAN. Her publications include SADnet, which combines channel, spatial and self-attention, and ICycleGAN, which integrates iterative dehazing with CycleGAN. The dehazing image in the portfolio illustrates the topic; it is not an experimental comparison from these papers.",
+    "words": [
+      "dehazing",
+      "haze",
+      "image restoration",
+      "master"
+    ],
+    "answer": "Zoey’s master’s research explored single-image dehazing — recovering a clear image from one hazy photograph — using semi-supervised learning, attention mechanisms and CycleGAN. It led to SADnet (ACM TOMM, 2022), which combines channel, spatial and self-attention, and ICycleGAN (CVIU, 2021), which integrates an iterative dehazing model into CycleGAN to preserve texture and colour.",
     "source": "#work"
   },
   {
@@ -457,10 +355,12 @@ const topics = [
       "work on",
       "nasa",
       "nex",
-      "lidar"
+      "lidar",
+      "forest",
+      "canopy"
     ],
-    "answer": "Zoey is an AI and Data Scientist at Dragonfly Data Science in Wellington (November 2025–present). She develops and evaluates machine learning models using aerial imagery and LiDAR, and builds reproducible training, validation and inference workflows. Her work includes a New Zealand–NASA research partnership through Dragonfly.",
-    "source": "#experience"
+    "answer": "Zoey is an AI and Data Scientist at Dragonfly Data Science (November 2025–present). She develops models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation, so canopy height can be mapped where LiDAR isn’t available. The work is part of an MBIE-funded New Zealand–NASA research partnership with NASA Earth Exchange; she is employed by Dragonfly. She also builds reproducible training and inference pipelines with Git, CI and cloud infrastructure.",
+    "source": "#work"
   },
   {
     "words": [
@@ -469,10 +369,10 @@ const topics = [
       "university",
       "studied",
       "study",
-      "master",
-      "bachelor"
+      "bachelor",
+      "qualification"
     ],
-    "answer": "Zoey holds a PhD in Artificial Intelligence from Victoria University of Wellington (2021–2025), an M.S. in Computer Application Technology (2018–2021), and a B.S. in Digital Media Technology (2014–2018), both from Shandong University of Finance and Economics.",
+    "answer": "Zoey holds a PhD in Artificial Intelligence from Victoria University of Wellington (2021–2025), an M.S. in Computer Application Technology (2018–2021) and a B.S. in Digital Media Technology (2014–2018), both from Shandong University of Finance and Economics.",
     "source": "#education"
   },
   {
@@ -481,9 +381,12 @@ const topics = [
       "phd",
       "segmentation",
       "computer vision",
-      "detection"
+      "detection",
+      "tree crown",
+      "thesis",
+      "yolo"
     ],
-    "answer": "Zoey’s research covers image dehazing, object detection and instance segmentation. Her PhD at Victoria University of Wellington developed CNN- and Transformer-based methods for aerial imagery, with Manaaki Whenua – Landcare Research. Her master’s research explored attention mechanisms and CycleGAN for image dehazing.",
+    "answer": "Zoey’s PhD at Victoria University of Wellington, with Manaaki Whenua – Landcare Research, developed models that detect and outline individual tree crowns in aerial imagery — a hard instance-segmentation problem because crowns overlap and vary in size. Her methods include YOLO-ITC, YOLOv8E, a feature-fusion YOLOv8, YOLOv8-UT and an improved Mask R-CNN. Her CV reports a 10% gain in detection accuracy and 8% in segmentation accuracy, and the work produced six papers.",
     "source": "#research"
   },
   {
@@ -495,9 +398,11 @@ const topics = [
       "govgpt",
       "paperboi",
       "callaghan",
-      "ai experience"
+      "ai experience",
+      "language model",
+      "retrieval"
     ],
-    "answer": "At Callaghan Innovation (October 2024–March 2025), Zoey contributed to GovGPT and PaperBoi, improving RAG for government information and scientific literature. At ElementX (August–October 2025), she worked on chatbot backends, LLM response evaluation and n8n document automation. Her experience includes Python, SQL, Azure AI Studio and AWS.",
+    "answer": "At Callaghan Innovation (October 2024–March 2025), Zoey improved RAG and semantic retrieval for GovGPT, a plain-language guide to New Zealand government services, and PaperBoi, an assistant for New Zealand research literature, working with Python, Azure AI Studio and AWS. At ElementX (August–October 2025), she worked on chatbot backends, structured LLM response evaluation and n8n document automation with human review.",
     "source": "#work"
   },
   {
@@ -506,10 +411,28 @@ const topics = [
       "n8n",
       "automation",
       "agentic",
-      "proposal"
+      "proposal",
+      "evaluation"
     ],
-    "answer": "At ElementX, Zoey built n8n workflows for AI-assisted proposal and document generation, human review and delivery. She also contributed to chatbot backend development, SQL data management and structured LLM response evaluation.",
-    "source": "#experience"
+    "answer": "At ElementX, Zoey contributed to chatbot backend development and SQL data management, evaluated LLM response accuracy through structured testing, and built end-to-end n8n workflows that draft proposals and supporting documents with AI, route them for human review and deliver approved files.",
+    "source": "#work"
+  },
+  {
+    "words": [
+      "industrial",
+      "weld",
+      "glass",
+      "factory",
+      "inspection",
+      "deployment",
+      "deployed",
+      "wheel",
+      "weld seam",
+      "glass flaw",
+      "defect"
+    ],
+    "answer": "Before her PhD, Zoey worked on two industrial computer-vision systems in China. For wheel-hub weld-seam positioning (2020, with FAW and China National Heavy Duty Truck Group) she worked on data and YOLO models; the deployed system reached a 99.98% detection rate with positioning error under 0.3 cm. For glass-flaw detection (2021) she built the dataset and pipeline, reaching over 93% accuracy across flat, specialty and decorative glass.",
+    "source": "#work"
   },
   {
     "words": [
@@ -520,9 +443,10 @@ const topics = [
       "pytorch",
       "tensorflow",
       "technolog",
-      "programming"
+      "programming",
+      "toolkit"
     ],
-    "answer": "Zoey’s technical skills include Python, SQL, Pandas, NumPy, PyTorch, TensorFlow, scikit-learn and OpenCV. She works with CNNs, Transformers, YOLO, RAG, semantic retrieval and LLM evaluation. Her engineering experience includes Git, continuous integration, multi-GPU training, Azure AI Studio, AWS, Linux and n8n.",
+    "answer": "Zoey works mainly in Python and SQL, with PyTorch, TensorFlow, scikit-learn and OpenCV for machine learning (CNNs, Transformers, U-Net, YOLO). She also works with aerial imagery and LiDAR, RAG and LLM evaluation, n8n, Git and CI, multi-GPU training, Azure AI Studio, AWS and Linux, and uses AI coding tools such as Codex, Claude Code, ChatGPT and Gemini.",
     "source": "#skills"
   },
   {
@@ -537,7 +461,20 @@ const topics = [
       "sadnet",
       "ddt"
     ],
-    "answer": "Zoey publishes as Ziyi Sun. This portfolio lists eight publications: YOLO-ITC and YOLOv8-UT (2026); YOLOv8 feature fusion, YOLOv8E and DDT learning (2025); improved Mask R-CNN (2023); SADnet (2022); and ICycleGAN (2021). Each entry includes its authors, publication details and a publisher link.",
+    "answer": "Zoey publishes as Ziyi Sun. There are eight publications, seven as first author: YOLO-ITC and YOLOv8-UT (2026); feature-fusion YOLOv8, YOLOv8E and deep distance transform (DDT) tree mapping (2025); an improved Mask R-CNN (IVCNZ 2023); SADnet (2022); and ICycleGAN (2021). Each entry links to the publisher.",
+    "source": "#research"
+  },
+  {
+    "words": [
+      "talk",
+      "talks",
+      "presentation",
+      "presented",
+      "conference",
+      "symposium",
+      "ivcnz"
+    ],
+    "answer": "Zoey has given four research talks: on her improved Mask R-CNN at IVCNZ 2023 in Palmerston North, and at the IEEE Postgraduate Symposium in Wellington on YOLO for tree-crown segmentation (2023), neural architecture search for image segmentation (2022) and evolutionary computation for image analysis (2021).",
     "source": "#research"
   },
   {
@@ -546,9 +483,10 @@ const topics = [
       "career",
       "background",
       "journey",
-      "worked"
+      "worked",
+      "jobs"
     ],
-    "answer": "Zoey is an AI and Data Scientist at Dragonfly. Her experience includes an R&D internship at ElementX, research at Victoria University of Wellington, and a Digital & AI internship at Callaghan Innovation. Earlier projects involved industrial computer vision for weld-seam positioning and glass-defect detection.",
+    "answer": "Zoey is an AI and Data Scientist at Dragonfly Data Science. Before that she was an R&D intern at ElementX (LLM evaluation and automation), a research assistant at Victoria University of Wellington, a Digital & AI intern at Callaghan Innovation (GovGPT and PaperBoi), and a PhD researcher in computer vision. Earlier, she worked on industrial computer vision for weld-seam positioning and glass-defect detection in China.",
     "source": "#experience"
   },
   {
@@ -560,9 +498,12 @@ const topics = [
       "hire",
       "opportunit",
       "available",
-      "linkedin"
+      "linkedin",
+      "reach her",
+      "reach zoey",
+      "get in touch"
     ],
-    "answer": "You can contact Zoey at ziyisun27@gmail.com or through LinkedIn. For collaboration, opportunities or availability, please ask her directly; those details are not included in her public profile.",
+    "answer": "You can reach Zoey at ziyisun27@gmail.com or on LinkedIn. For collaboration, opportunities or availability, please ask her directly; those details aren’t part of her public profile.",
     "source": "#contact"
   },
   {
@@ -573,10 +514,11 @@ const topics = [
       "free time",
       "interests",
       "hiking",
-      "cooking"
+      "cooking",
+      "fishing"
     ],
-    "answer": "Outside work, Zoey enjoys fishing, hiking, cycling, swimming, badminton, cooking, reading and traveling.",
-    "source": "#about"
+    "answer": "Outside work, Zoey enjoys fishing, hiking, cycling, swimming, badminton, cooking, reading and travelling.",
+    "source": "#education"
   },
   {
     "words": [
@@ -593,10 +535,11 @@ const topics = [
     "words": [
       "language",
       "english",
-      "mandarin"
+      "mandarin",
+      "chinese"
     ],
-    "answer": "Zoey’s languages are English and Chinese. Her professional experience includes English-language research publications, conference presentations and multidisciplinary collaboration.",
-    "source": "#skills"
+    "answer": "Zoey speaks English fluently and Chinese natively. She writes and presents research in English and collaborates in multidisciplinary teams.",
+    "source": "#education"
   }
 ];
 

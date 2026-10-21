@@ -1,195 +1,646 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8f4">
-  <meta name="description" content="Zoey (Ziyi) Sun — AI and Data Scientist at Dragonfly Data Science. Experience in machine learning, computer vision, LLM applications and model evaluation.">
-  <meta property="og:title" content="Zoey Sun | AI and Data Scientist">
-  <meta property="og:description" content="Meet Zoey. Explore my work in machine learning, computer vision and AI applications.">
+  <title>Zoey Sun · AI and Data Scientist</title>
+  <meta name="description" content="Zoey (Ziyi) Sun is an AI and data scientist with a PhD in artificial intelligence, working on computer vision, remote sensing and LLM applications.">
+  <meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F0F0F" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://zoeysun.site/">
   <meta property="og:type" content="website">
-  <title>Zoey Sun | AI and Data Scientist</title>
+  <meta property="og:url" content="https://zoeysun.site/">
+  <meta property="og:title" content="Zoey Sun · AI and Data Scientist">
+  <meta property="og:description" content="AI and data scientist with a PhD in artificial intelligence, working across computer vision, remote sensing and LLM applications.">
+  <meta property="og:image" content="https://zoeysun.site/assets/zoey.jpg">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // Apply a saved theme before first paint; the page follows the system setting otherwise.
+    document.documentElement.classList.add('js');
+    try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
+  </script>
   <script src="config.js"></script>
   <script defer src="app.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Zoey Sun",
+    "alternateName": "Ziyi Sun",
+    "jobTitle": "AI and Data Scientist",
+    "worksFor": {"@type": "Organization", "name": "Dragonfly Data Science"},
+    "alumniOf": [
+      {"@type": "CollegeOrUniversity", "name": "Victoria University of Wellington"},
+      {"@type": "CollegeOrUniversity", "name": "Shandong University of Finance and Economics"}
+    ],
+    "url": "https://zoeysun.site/",
+    "image": "https://zoeysun.site/assets/zoey.jpg",
+    "sameAs": ["https://www.linkedin.com/in/zoey-sun/", "https://github.com/ZoeySun3"],
+    "knowsAbout": ["Machine learning", "Computer vision", "Remote sensing", "Instance segmentation", "Retrieval-augmented generation", "LLM evaluation"]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
   <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs>
-    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-16-2 20"/></symbol>
-    <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
-    <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 2 2.8 7.2L22 12l-7.2 2.8L12 22l-2.8-7.2L2 12l7.2-2.8Z"/></symbol>
-    <symbol id="icon-cloud" viewBox="0 0 24 24"><path d="M6 18a4 4 0 0 1-1-7.9 7 7 0 0 1 13.6-1.8A5 5 0 0 1 18 18H6Z"/></symbol>
-    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/></symbol>
-    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16v-4m5 4V8m5 8V4"/></symbol>
-    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11a8 8 0 0 1-8 8H8l-5 3v-7a8 8 0 1 1 18-4Z"/><path d="M8 10h9M8 14h5"/></symbol>
-    <symbol id="icon-bot" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="4"/><path d="M12 3v4M2 11v5m20-5v5M9 16h6"/><path d="M9 12h.01M15 12h.01" stroke-width="3"/></symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+    <symbol id="icon-bot" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="4"/><path d="M12 3v4M9 16h6"/><path d="M9 12h.01M15 12h.01" stroke-width="3"/></symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></symbol>
+    <symbol id="icon-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
   </defs></svg>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="wordmark" href="#about">Zoey Sun</a>
-      <nav aria-label="Main navigation">
-        <a href="#ask">Ask me</a><a href="#work">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#research">Publications</a><a href="#contact">Contact</a>
+
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#about" aria-label="Zoey Sun, back to top">
+        <svg class="wordmark-mark" viewBox="0 0 26 26" aria-hidden="true"><rect class="tile" width="26" height="26" rx="6"/><rect class="px" x="5.0" y="5.0" width="3.4" height="3.4" rx=".7"/><rect class="px" x="9.3" y="5.0" width="3.4" height="3.4" rx=".7"/><rect class="px" x="13.6" y="5.0" width="3.4" height="3.4" rx=".7"/><rect class="px" x="17.9" y="5.0" width="3.4" height="3.4" rx=".7"/><rect class="off" x="5.0" y="9.3" width="3.4" height="3.4" rx=".7"/><rect class="off" x="9.3" y="9.3" width="3.4" height="3.4" rx=".7"/><rect class="px" x="13.6" y="9.3" width="3.4" height="3.4" rx=".7"/><rect class="off" x="17.9" y="9.3" width="3.4" height="3.4" rx=".7"/><rect class="off" x="5.0" y="13.6" width="3.4" height="3.4" rx=".7"/><rect class="px" x="9.3" y="13.6" width="3.4" height="3.4" rx=".7"/><rect class="off" x="13.6" y="13.6" width="3.4" height="3.4" rx=".7"/><rect class="off" x="17.9" y="13.6" width="3.4" height="3.4" rx=".7"/><rect class="px" x="5.0" y="17.9" width="3.4" height="3.4" rx=".7"/><rect class="px" x="9.3" y="17.9" width="3.4" height="3.4" rx=".7"/><rect class="px" x="13.6" y="17.9" width="3.4" height="3.4" rx=".7"/><rect class="px" x="17.9" y="17.9" width="3.4" height="3.4" rx=".7"/></svg>
+        <span>Zoey Sun</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Toolkit</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-ask" href="#ask">Ask about me</a>
       </nav>
+      <div class="header-tools">
+        <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+          <svg class="i-sun" aria-hidden="true"><use href="#icon-sun"/></svg>
+          <svg class="i-moon" aria-hidden="true"><use href="#icon-moon"/></svg>
+        </button>
+        <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <svg aria-hidden="true"><use href="#icon-menu"/></svg>
+        </button>
+      </div>
     </div>
   </header>
-  <main id="main" class="container">
-    <section class="profile" id="about" aria-labelledby="profile-title">
-      <div class="profile-copy">
-        <h1 id="profile-title">Hi, I’m Zoey<span class="accent">.</span></h1>
-        <p class="profile-summary">Solve real-world problems with AI and machine learning.</p>
-        <p class="profile-qualification">PhD in Artificial Intelligence · Victoria University of Wellington</p>
-        <div class="profile-actions"><a class="button" href="#work">Explore my work</a><a class="quiet-link" href="#ask">Ask about me</a></div>
-        <div class="profile-links"><a href="https://www.linkedin.com/in/zoey-sun/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/ZoeySun3" target="_blank" rel="noopener noreferrer">GitHub</a><details class="email-contact"><summary>Email</summary><div class="email-reveal"><p class="email-address">ziyisun27@gmail.com</p></div></details></div>
-      </div>
-      <figure class="profile-portrait"><img class="profile-photo" src="assets/zoey.jpg" alt="Zoey Sun smiling outdoors" width="813" height="964" fetchpriority="high"><figcaption>Zoey (Ziyi) Sun</figcaption></figure>
-    </section>
 
-    <section class="ask-section" id="ask" aria-labelledby="ask-title">
-      <div class="chat-panel">
-        <div class="ask-heading">
-          <div class="ask-intro"><h2 id="ask-title">Ask about me</h2><p>Explore my experience, research and projects.</p></div>
-          <div class="chat-tools"><span id="chat-mode">Profile Q&amp;A</span><button id="chat-reset" class="text-button" type="button" hidden>Clear conversation</button></div>
+  <main id="main">
+    <!-- Introduction -->
+    <section class="hero" id="about" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Zoey (Ziyi) Sun <span aria-hidden="true">/</span> AI &amp; Data Scientist</p>
+          <h1 id="hero-title">I build AI that works in the <span class="hl">real&nbsp;world.</span></h1>
+          <p class="hero-lede">I’m an AI and data scientist with a PhD in artificial intelligence. I take machine-learning problems from raw data to working models — across computer vision, remote sensing and LLM applications — and I evaluate them as carefully as I build them.</p>
+          <p class="now"><span class="now-dot" aria-hidden="true"></span><span class="now-label">Now</span><span>AI and Data Scientist at <strong>Dragonfly Data Science</strong>, building machine-learning models for aerial imagery and LiDAR.</span></p>
+          <div class="hero-actions">
+            <a class="button button--solid" href="#work">See selected work</a>
+            <a class="button button--ghost" href="#ask">Ask about me</a>
+          </div>
+          <ul class="hero-links" aria-label="Profiles">
+            <li><a href="https://www.linkedin.com/in/zoey-sun/" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-linkedin"/></svg>LinkedIn</a></li>
+            <li><a href="https://github.com/ZoeySun3" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-github"/></svg>GitHub</a></li>
+            <li><a href="#contact" data-show-email><svg aria-hidden="true"><use href="#icon-mail"/></svg>Email</a></li>
+          </ul>
         </div>
-        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation with Zoey’s portfolio assistant" tabindex="0" hidden></div>
-        <form id="chat-form"><label class="sr-only" for="chat-input">Your question about Zoey</label><textarea id="chat-input" rows="1" maxlength="1200" placeholder="What would you like to know about Zoey?" aria-describedby="chat-disclosure" required></textarea><button type="submit" id="chat-send" class="button" aria-controls="chat-messages" aria-expanded="false">Send</button></form>
-        <div class="suggested-questions" id="suggested-questions"><button type="button" data-question="What is Zoey working on at Dragonfly?">My current work</button><button type="button" data-question="Tell me about Zoey’s AI experience.">My AI experience</button><button type="button" data-question="What was Zoey’s PhD research about?">My PhD research</button></div>
-        <p class="chat-disclosure" id="chat-disclosure">Prepared answers from Zoey’s profile and publications.</p>
+        <figure class="portrait">
+          <div class="portrait-frame">
+            <picture>
+              <source srcset="assets/zoey.webp" type="image/webp">
+              <img src="assets/zoey.jpg" alt="Portrait of Zoey Sun smiling, standing among native bush" width="813" height="964" fetchpriority="high">
+            </picture>
+          </div>
+        </figure>
       </div>
-      <noscript><p class="note">Enable JavaScript to ask a question. You can also explore my projects and experience below.</p></noscript>
+      <div class="wrap">
+        <dl class="stats">
+          <div class="stat"><dt>PhD</dt><dd>Artificial Intelligence, Victoria University of Wellington</dd></div>
+          <div class="stat"><dt>8</dt><dd>peer-reviewed papers, 7 as first author</dd></div>
+          <div class="stat"><dt>+10%</dt><dd>detection accuracy from my PhD models over existing methods (+8% segmentation)</dd></div>
+          <div class="stat"><dt>99.98%</dt><dd>weld-seam detection rate in a deployed industrial system</dd></div>
+        </dl>
+      </div>
     </section>
 
-    <section class="section work-section" id="work" aria-labelledby="work-title">
-      <div class="section-heading"><div><h2 id="work-title">Selected projects</h2></div><div class="project-controls" hidden><div class="project-progress" aria-hidden="true"><span id="project-progress"></span></div><span class="project-count" id="project-count" role="status" aria-live="polite" aria-atomic="true">01 / 06</span><button id="projects-previous" class="icon-button" type="button" aria-label="Previous project" aria-controls="project-track" disabled>←</button><button id="projects-next" class="icon-button" type="button" aria-label="Next project" aria-controls="project-track">→</button></div></div>
-      <div class="project-track" id="project-track" tabindex="0" role="region" aria-label="Project gallery">
-        <article class="project" id="project-forest">
-          <figure class="project-figure project-figure--canopy"><img src="assets/dragonfly-canopy.png" alt="Aerial imagery beside a model-predicted synthetic canopy height map" width="249" height="240" loading="lazy"></figure>
-          <div class="project-copy"><p class="project-category">Current work</p><h3 id="project-forest-title">Dynamic forest mapping</h3><p class="project-meta">Dragonfly Data Science · Nov 2025–present</p><p class="project-summary">I develop models to predict canopy height from aerial imagery, using LiDAR for training and validation.</p><div class="project-tags"><span class="skill-chip">Machine learning</span><span class="skill-chip">Aerial imagery</span><span class="skill-chip">LiDAR</span></div><button class="project-open" type="button" data-project="forest" aria-label="Explore Dynamic forest mapping" aria-haspopup="dialog" aria-controls="project-dialog">Explore project</button></div>
-        </article>
-        <article class="project" id="project-crowns">
-          <figure class="project-figure project-figure--research"><img src="assets/tree-research.png" alt="Original aerial image beside detected tree crowns with bounding boxes and red instance masks" width="1306" height="661" loading="lazy"></figure>
-          <div class="project-copy"><p class="project-category">Doctoral research</p><h3 id="project-crowns-title">Object detection &amp; segmentation</h3><p class="project-meta">PhD research · 2021–2025</p><p class="project-summary">I developed detection and instance segmentation models to identify individual tree crowns in aerial imagery.</p><div class="project-tags"><span class="skill-chip">Computer vision</span><span class="skill-chip">YOLO</span><span class="skill-chip">Instance segmentation</span></div><button class="project-open" type="button" data-project="crowns" aria-label="Explore Object detection &amp; segmentation" aria-haspopup="dialog" aria-controls="project-dialog">Explore project</button></div>
-        </article>
-        <article class="project" id="project-rag">
-          <figure class="project-figure project-figure--workflow"><img src="assets/retrieval-workflow.svg" alt="Workflow diagram showing government information and scientific literature passing through retrieval into a source-grounded answer" width="960" height="512" loading="lazy"></figure>
-          <div class="project-copy"><p class="project-category">Conversational AI</p><h3 id="project-rag-title">GovGPT &amp; PaperBoi</h3><p class="project-meta">Callaghan Innovation · 2024–2025</p><p class="project-summary">I improved retrieval workflows for conversational assistants covering government information and scientific literature.</p><div class="project-tags"><span class="skill-chip">Python</span><span class="skill-chip">RAG</span><span class="skill-chip">Azure AI Studio</span><span class="skill-chip">AWS</span></div><button class="project-open" type="button" data-project="rag" aria-label="Explore GovGPT &amp; PaperBoi" aria-haspopup="dialog" aria-controls="project-dialog">Explore project</button></div>
-        </article>
-        <article class="project" id="project-agents">
-          <figure class="project-figure project-figure--workflow"><img src="assets/document-workflow.svg" alt="Workflow diagram showing structured response evaluation alongside drafts, human review and document delivery" width="960" height="512" loading="lazy"></figure>
-          <div class="project-copy"><p class="project-category">AI workflows</p><h3 id="project-agents-title">LLM evaluation &amp; document workflows</h3><p class="project-meta">ElementX · 2025</p><p class="project-summary">I evaluated LLM responses and built document workflows that connect AI-generated drafts with human review.</p><div class="project-tags"><span class="skill-chip">LLMs</span><span class="skill-chip">SQL</span><span class="skill-chip">Ruby</span><span class="skill-chip">n8n</span></div><button class="project-open" type="button" data-project="agents" aria-label="Explore LLM evaluation &amp; document workflows" aria-haspopup="dialog" aria-controls="project-dialog">Explore project</button></div>
-        </article>
-        <article class="project" id="project-inspection">
-          <div class="project-figure project-figure--industrial project-figure--pair"><figure><img src="assets/weld-inspection.png" alt="Wheel-hub manufacturing images and a detected weld-seam region" width="2062" height="720" loading="lazy"><figcaption>Weld-seam positioning</figcaption></figure><figure><img src="assets/glass-detection.png" alt="Glass samples and detected defects" width="2134" height="1208" loading="lazy"><figcaption>Glass-defect detection</figcaption></figure></div>
-          <div class="project-copy"><p class="project-category">Applied computer vision</p><h3 id="project-inspection-title">Visual inspection &amp; positioning</h3><p class="project-meta">Industrial applications · 2020–2021</p><p class="project-summary">I developed YOLO-based detection models for weld-seam positioning and glass-defect inspection.</p><div class="project-tags"><span class="skill-chip">Computer vision</span><span class="skill-chip">YOLO</span><span class="skill-chip">Object detection</span></div><button class="project-open" type="button" data-project="inspection" aria-label="Explore Visual inspection &amp; positioning" aria-haspopup="dialog" aria-controls="project-dialog">Explore project</button></div>
-        </article>
-        <article class="project" id="project-dehazing">
-          <figure class="project-figure project-figure--dehazing"><img src="assets/dehazing-example.webp" alt="Illustrative landscape comparison: a hazy mountain scene on the left and a clear mountain lake on the right" width="960" height="640" loading="lazy"></figure>
-          <div class="project-copy"><p class="project-category">Image restoration</p><h3 id="project-dehazing-title">Single-image dehazing</h3><p class="project-meta">Master’s research · 2018–2021</p><p class="project-summary">I developed attention-based and CycleGAN methods to recover colour, texture and detail in hazy images.</p><div class="project-tags"><span class="skill-chip">Deep learning</span><span class="skill-chip">Attention</span><span class="skill-chip">CycleGAN</span></div><button class="project-open" type="button" data-project="dehazing" aria-label="Explore Single-image dehazing" aria-haspopup="dialog" aria-controls="project-dialog">Explore project</button></div>
-        </article>
+    <!-- Assistant -->
+    <section class="section section--ask" id="ask" aria-labelledby="ask-title">
+      <div class="wrap">
+        <div class="ask-panel">
+          <div class="ask-intro">
+            <p class="kicker"><span class="kicker-num">01</span> Ask</p>
+            <h2 id="ask-title">Ask about my work</h2>
+            <p>An assistant that answers from my CV, projects and publications. It’s quicker than reading everything — but answers can be imperfect, so follow the source links.</p>
+            <div class="chat-status"><span class="status-dot" aria-hidden="true"></span><span id="chat-mode">Profile Q&amp;A</span></div>
+          </div>
+          <div class="chat">
+            <div class="chat-head" hidden id="chat-head">
+              <span class="mono-caption">Conversation</span>
+              <button id="chat-reset" class="text-button" type="button" hidden>Clear</button>
+            </div>
+            <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation with Zoey’s portfolio assistant" tabindex="0" hidden></div>
+            <form id="chat-form" class="chat-form">
+              <label class="sr-only" for="chat-input">Your question about Zoey</label>
+              <textarea id="chat-input" rows="1" maxlength="1200" placeholder="e.g. What did Zoey’s PhD find?" aria-describedby="chat-disclosure" required></textarea>
+              <button type="submit" id="chat-send" class="send-button" aria-controls="chat-messages" aria-expanded="false" aria-label="Send question"><svg aria-hidden="true"><use href="#icon-send"/></svg></button>
+            </form>
+            <div class="suggestions" id="suggested-questions" aria-label="Suggested questions">
+              <button type="button" data-question="What is Zoey working on at Dragonfly?">What is she working on now?</button>
+              <button type="button" data-question="What was Zoey’s PhD research about?">What was the PhD about?</button>
+              <button type="button" data-question="Tell me about Zoey’s AI experience.">LLM &amp; RAG experience</button>
+              <button type="button" data-question="Summarise the YOLO-ITC paper.">Summarise YOLO-ITC</button>
+            </div>
+            <p class="chat-disclosure" id="chat-disclosure">Prepared answers from Zoey’s profile and publications.</p>
+          </div>
+        </div>
+        <noscript><p class="note">Turn on JavaScript to ask a question — or keep scrolling; everything is on this page.</p></noscript>
       </div>
-      <noscript><p class="note">Scroll sideways to browse all six projects. Enable JavaScript to open the project details.</p></noscript>
     </section>
 
+    <!-- Projects -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker"><span class="kicker-num">02</span> Work</p>
+          <h2 id="work-title">Selected work</h2>
+          <p class="section-intro">Six projects across industry and research — computer vision, remote sensing and language models. Open any of them for the full story.</p>
+        </header>
+
+        <div class="projects">
+          <article class="project project--wide" data-project="forest">
+            <div class="project-media plate plate--canopy">
+              <figure class="specimen">
+                <img src="assets/dragonfly-canopy.png" alt="An aerial image beside the model-predicted synthetic canopy height model for the same area" width="249" height="240" loading="lazy">
+              </figure>
+            </div>
+            <div class="project-body">
+              <p class="project-meta"><span class="project-num">01</span><span>Dragonfly Data Science</span><span>2025 – now</span></p>
+              <h3>Dynamic forest mapping</h3>
+              <p class="project-summary">Predicting canopy height from aerial imagery, trained and validated against LiDAR, so forest structure can be mapped wherever LiDAR doesn’t reach.</p>
+              <p class="project-fact">Part of a New Zealand–NASA research partnership with NASA Earth Exchange</p>
+              <ul class="tags" aria-label="Methods and tools"><li>Machine learning</li><li>Remote sensing</li><li>LiDAR</li><li>U-Net</li></ul>
+              <button class="project-open" type="button" data-open="forest" aria-haspopup="dialog">Read the case study</button>
+            </div>
+          </article>
+
+          <article class="project project--wide project--flip" data-project="crowns">
+            <div class="project-media plate">
+              <div class="compare" style="--pos: 52%">
+                <img src="assets/crowns-masks.webp" alt="The same aerial image with every detected tree crown outlined and filled in red, each labelled with a confidence score" width="620" height="620" loading="lazy">
+                <img class="compare-top" src="assets/crowns-aerial.webp" alt="" width="620" height="620" loading="lazy">
+                <span class="compare-handle" aria-hidden="true"></span>
+                <input class="compare-range" type="range" min="0" max="100" value="52" aria-label="Compare the aerial image with the predicted tree crowns">
+                <span class="plate-tag plate-tag--tl">Input</span>
+                <span class="plate-tag plate-tag--tr">Prediction</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <p class="project-meta"><span class="project-num">02</span><span>PhD research</span><span>2021 – 2025</span></p>
+              <h3>Finding every tree</h3>
+              <p class="project-summary">New YOLO and Mask R-CNN variants that detect and outline individual tree crowns in aerial imagery — even where canopies overlap. Drag the image to compare input and prediction.</p>
+              <p class="project-fact">+10% detection and +8% segmentation accuracy · six papers</p>
+              <ul class="tags" aria-label="Methods and tools"><li>PyTorch</li><li>YOLO</li><li>Transformers</li><li>Instance segmentation</li></ul>
+              <button class="project-open" type="button" data-open="crowns" aria-haspopup="dialog">Read the case study</button>
+            </div>
+          </article>
+
+          <article class="project" data-project="rag">
+            <div class="project-media plate plate--diagram">
+              <svg class="diagram" viewBox="0 32 520 224" role="img" aria-labelledby="rag-card-title">
+                <title id="rag-card-title">Concept diagram: government and research sources feed a retrieval step, which grounds a conversational answer with citations</title>
+                <g class="d-node"><rect x="22" y="42" width="138" height="88" rx="10"/><path class="d-ink" d="M40 66h52M40 82h86M40 98h70"/><text x="91" y="118" text-anchor="middle">gov services</text></g>
+                <g class="d-node"><rect x="22" y="162" width="138" height="88" rx="10"/><path class="d-ink" d="M40 186h60M40 202h80M40 218h48"/><text x="91" y="238" text-anchor="middle">NZ research</text></g>
+                <path class="d-flow" d="M160 86c30 0 30 50 52 58M160 206c30 0 30-50 52-58"/>
+                <g class="d-node"><rect x="214" y="92" width="112" height="116" rx="10"/><rect class="d-chunk" x="230" y="110" width="80" height="14" rx="3"/><rect class="d-chunk d-hit" x="230" y="132" width="80" height="14" rx="3"/><rect class="d-chunk" x="230" y="154" width="80" height="14" rx="3"/><text x="270" y="194" text-anchor="middle">retrieve</text></g>
+                <path class="d-flow" d="M326 150h40"/>
+                <g class="d-node d-node--answer"><path d="M368 64h124a10 10 0 0 1 10 10v128a10 10 0 0 1-10 10h-84l-24 22v-22h-16a10 10 0 0 1-10-10V74a10 10 0 0 1 10-10Z"/><path class="d-ink" d="M384 88h96M384 104h82M384 120h92M384 136h60"/><rect class="d-cite" x="384" y="156" width="26" height="18" rx="4"/><rect class="d-cite" x="416" y="156" width="26" height="18" rx="4"/><text x="435" y="198" text-anchor="middle">cited answer</text></g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <p class="project-meta"><span class="project-num">03</span><span>Callaghan Innovation</span><span>2024 – 2025</span></p>
+              <h3>GovGPT &amp; PaperBoi</h3>
+              <p class="project-summary">Retrieval-augmented assistants that help New Zealanders find government services and policy in plain language, and explore research from New Zealand institutions.</p>
+              <ul class="tags" aria-label="Methods and tools"><li>Python</li><li>RAG</li><li>Azure AI Studio</li><li>AWS</li></ul>
+              <button class="project-open" type="button" data-open="rag" aria-haspopup="dialog">Read the case study</button>
+            </div>
+          </article>
+
+          <article class="project" data-project="agents">
+            <div class="project-media plate plate--diagram">
+              <svg class="diagram" viewBox="0 14 520 220" role="img" aria-labelledby="eval-card-title">
+                <title id="eval-card-title">Concept diagram: an AI draft is evaluated, reviewed by a person, then delivered, with a loop back for revisions</title>
+                <g class="d-node"><rect x="18" y="104" width="100" height="92" rx="10"/><path class="d-ink" d="M34 126h54M34 140h68M34 154h44"/><text x="68" y="182" text-anchor="middle">AI draft</text></g>
+                <path class="d-flow" d="M118 150h22"/>
+                <g class="d-node"><rect x="142" y="104" width="108" height="92" rx="10"/><path class="d-check" d="m158 122 5 5 9-10M158 142l5 5 9-10"/><path class="d-cross" d="m159 157 9 9m0-9-9 9"/><path class="d-ink" d="M184 122h48M184 142h40M184 162h44"/><text x="196" y="186" text-anchor="middle" class="d-small">evaluate</text></g>
+                <path class="d-flow" d="M250 150h22"/>
+                <g class="d-node d-node--accent"><rect x="274" y="104" width="108" height="92" rx="10"/><circle class="d-person" cx="328" cy="134" r="11"/><path class="d-person" d="M308 168c4-12 12-17 20-17s16 5 20 17"/><text x="328" y="186" text-anchor="middle" class="d-small">human review</text></g>
+                <path class="d-flow" d="M382 150h22"/>
+                <g class="d-node"><path d="M406 104h66l26 26v66h-92Z"/><path class="d-ink" d="M472 104v26h26"/><path class="d-check" d="m432 154 8 8 16-18"/><text x="452" y="186" text-anchor="middle" class="d-small">deliver</text></g>
+                <path class="d-flow d-loop" d="M328 104c0-48-260-48-260 0"/>
+                <text x="198" y="56" text-anchor="middle" class="d-small d-muted">revise</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <p class="project-meta"><span class="project-num">04</span><span>ElementX</span><span>2025</span></p>
+              <h3>LLM evaluation &amp; document automation</h3>
+              <p class="project-summary">Structured testing of chatbot answers, plus n8n workflows that draft proposals with AI and route every draft through human review before it’s sent.</p>
+              <ul class="tags" aria-label="Methods and tools"><li>LLMs</li><li>SQL</li><li>Ruby</li><li>n8n</li></ul>
+              <button class="project-open" type="button" data-open="agents" aria-haspopup="dialog">Read the case study</button>
+            </div>
+          </article>
+
+          <article class="project" data-project="inspection">
+            <div class="project-media plate plate--photo plate--duo">
+              <img src="assets/weld-detect.webp" alt="A steel wheel hub on an inspection table, with the detected weld seam marked by a blue bounding box" width="798" height="662" loading="lazy">
+              <img class="duo-glass" src="assets/glass-ware.webp" alt="Glassware with an inset close-up of a detected bubble, confidence 0.93" width="1010" height="1146" loading="lazy">
+              <span class="plate-tag plate-tag--tl">Weld seam</span>
+              <span class="plate-tag plate-tag--tr">Glass flaw</span>
+            </div>
+            <div class="project-body">
+              <p class="project-meta"><span class="project-num">05</span><span>Applied AI, China</span><span>2020 – 2021</span></p>
+              <h3>Industrial visual inspection</h3>
+              <p class="project-summary">YOLO detectors that locate weld seams on wheel hubs and find flaws in glass — taken from raw factory images to client deployment.</p>
+              <p class="project-fact">99.98% detection · under 0.3 cm positioning error</p>
+              <ul class="tags" aria-label="Methods and tools"><li>Computer vision</li><li>YOLO</li><li>Dataset building</li></ul>
+              <button class="project-open" type="button" data-open="inspection" aria-haspopup="dialog">Read the case study</button>
+            </div>
+          </article>
+
+          <article class="project" data-project="dehazing">
+            <div class="project-media plate plate--photo">
+              <img src="assets/dehazing-example.webp" alt="Illustration of dehazing: a hazy mountain valley on the left and the same kind of scene, clear, on the right" width="960" height="640" loading="lazy">
+            </div>
+            <div class="project-body">
+              <p class="project-meta"><span class="project-num">06</span><span>Master’s research</span><span>2018 – 2021</span></p>
+              <h3>Single-image dehazing</h3>
+              <p class="project-summary">Attention-based and CycleGAN methods that recover colour, contrast and fine texture from a single hazy photograph.</p>
+              <p class="project-fact">Published in ACM TOMM and Computer Vision and Image Understanding</p>
+              <ul class="tags" aria-label="Methods and tools"><li>Deep learning</li><li>Attention</li><li>CycleGAN</li></ul>
+              <button class="project-open" type="button" data-open="dehazing" aria-haspopup="dialog">Read the case study</button>
+            </div>
+          </article>
+        </div>
+        <noscript><p class="note">Turn on JavaScript to open the full case studies.</p></noscript>
+      </div>
+    </section>
+
+    <!-- Experience -->
     <section class="section" id="experience" aria-labelledby="experience-title">
-      <div class="section-heading"><h2 id="experience-title">Experience</h2></div>
-      <div class="experience-list">
-        <article class="experience-row"><div class="experience-period"><p>Nov 2025 — Present</p><span>Wellington, New Zealand</span></div><div class="experience-detail"><h3>AI and Data Scientist</h3><p class="organisation">Dragonfly Data Science</p><p class="experience-summary">Develop ML models for aerial imagery and LiDAR.</p></div></article>
-        <article class="experience-row"><div class="experience-period"><p>Aug — Oct 2025</p><span>Auckland, New Zealand</span></div><div class="experience-detail"><h3>R&amp;D Intern</h3><p class="organisation">ElementX</p><p class="experience-summary">Evaluated LLMs and automated document workflows.</p></div></article>
-        <article class="experience-row"><div class="experience-period"><p>Mar — Aug 2025</p><span>Wellington, New Zealand</span></div><div class="experience-detail"><h3>Research Assistant</h3><p class="organisation">Victoria University of Wellington</p><p class="experience-summary">Developed instance segmentation methods for tree crowns.</p></div></article>
-        <article class="experience-row"><div class="experience-period"><p>Oct 2024 — Mar 2025</p><span>Wellington, New Zealand</span></div><div class="experience-detail"><h3>Digital &amp; AI Intern</h3><p class="organisation">Callaghan Innovation</p><p class="experience-summary">Improved RAG workflows for GovGPT and PaperBoi.</p></div></article>
-        <article class="experience-row"><div class="experience-period"><p>Oct 2021 — Feb 2025</p><span>Wellington, New Zealand</span></div><div class="experience-detail"><h3>PhD Researcher</h3><p class="organisation">Victoria University of Wellington</p><p class="experience-summary">Researched object detection and instance segmentation.</p></div></article>
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker"><span class="kicker-num">03</span> Experience</p>
+          <h2 id="experience-title">Where I’ve worked</h2>
+        </header>
+        <ol class="timeline">
+          <li class="role role--current">
+            <p class="role-when"><span>Nov 2025 — Present</span><span class="role-where">Wellington</span></p>
+            <div class="role-what"><h3>AI and Data Scientist</h3><p class="role-org">Dragonfly Data Science</p></div>
+            <p class="role-desc">Machine learning for forest mapping from aerial imagery and LiDAR, as part of a New Zealand–NASA research partnership.</p>
+          </li>
+          <li class="role">
+            <p class="role-when"><span>Aug — Oct 2025</span><span class="role-where">Auckland</span></p>
+            <div class="role-what"><h3>R&amp;D Intern</h3><p class="role-org">ElementX</p></div>
+            <p class="role-desc">Chatbot backends, structured LLM response evaluation and n8n document automation.</p>
+          </li>
+          <li class="role">
+            <p class="role-when"><span>Mar — Aug 2025</span><span class="role-where">Wellington</span></p>
+            <div class="role-what"><h3>Research Assistant</h3><p class="role-org">Victoria University of Wellington</p></div>
+            <p class="role-desc">Extended my tree-crown instance segmentation research with Manaaki Whenua – Landcare Research.</p>
+          </li>
+          <li class="role">
+            <p class="role-when"><span>Oct 2024 — Mar 2025</span><span class="role-where">Wellington</span></p>
+            <div class="role-what"><h3>Digital &amp; AI Intern</h3><p class="role-org">Callaghan Innovation</p></div>
+            <p class="role-desc">Improved RAG and semantic retrieval for the GovGPT and PaperBoi assistants.</p>
+          </li>
+          <li class="role">
+            <p class="role-when"><span>Oct 2021 — Feb 2025</span><span class="role-where">Wellington</span></p>
+            <div class="role-what"><h3>PhD Researcher</h3><p class="role-org">Victoria University of Wellington</p></div>
+            <p class="role-desc">Detection and instance segmentation of tree crowns in aerial imagery, with large-scale data pipelines and multi-GPU training.</p>
+          </li>
+          <li class="role">
+            <p class="role-when"><span>2020 — 2021</span><span class="role-where">China</span></p>
+            <div class="role-what"><h3>Applied AI projects</h3><p class="role-org">Industrial computer vision</p></div>
+            <p class="role-desc">Weld-seam positioning with FAW and China National Heavy Duty Truck Group, and glass-flaw detection — from data collection to deployment.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <section class="section skills-section" id="skills" aria-labelledby="skills-title">
-      <div class="section-heading"><h2 id="skills-title">Tools I work with</h2></div>
-      <dl class="skills-table">
-        <div class="skills-row">
-          <dt><svg class="skill-category-icon" aria-hidden="true" width="18" height="18"><use href="#icon-code"></use></svg>Data &amp; analysis</dt>
-          <dd><div class="skill-chips"><span class="skill-chip">Python</span><span class="skill-chip">SQL</span><span class="skill-chip">Pandas</span><span class="skill-chip">NumPy</span><span class="skill-chip">Power BI</span></div></dd>
-        </div>
-        <div class="skills-row">
-          <dt><svg class="skill-category-icon" aria-hidden="true" width="18" height="18"><use href="#icon-eye"></use></svg>Machine learning</dt>
-          <dd><div class="skill-chips"><span class="skill-chip">PyTorch</span><span class="skill-chip">TensorFlow</span><span class="skill-chip">scikit-learn</span><span class="skill-chip">OpenCV</span></div></dd>
-        </div>
-        <div class="skills-row">
-          <dt><svg class="skill-category-icon" aria-hidden="true" width="18" height="18"><use href="#icon-globe"></use></svg>Geospatial data</dt>
-          <dd><div class="skill-chips"><span class="skill-chip">Aerial imagery</span><span class="skill-chip">LiDAR</span><span class="skill-chip">Remote sensing</span></div></dd>
-        </div>
-        <div class="skills-row">
-          <dt><svg class="skill-category-icon" aria-hidden="true" width="18" height="18"><use href="#icon-spark"></use></svg>LLMs &amp; automation</dt>
-          <dd><div class="skill-chips"><span class="skill-chip">RAG</span><span class="skill-chip">LLM evaluation</span><span class="skill-chip">n8n</span><span class="skill-chip">Azure AI Studio</span></div></dd>
-        </div>
-        <div class="skills-row">
-          <dt><svg class="skill-category-icon" aria-hidden="true" width="18" height="18"><use href="#icon-cloud"></use></svg>Engineering &amp; cloud</dt>
-          <dd><div class="skill-chips"><span class="skill-chip">Git</span><span class="skill-chip">AWS</span><span class="skill-chip">Linux</span><span class="skill-chip">CI</span></div></dd>
-        </div>
-        <div class="skills-row">
-          <dt><svg class="skill-category-icon" aria-hidden="true" width="18" height="18"><use href="#icon-spark"></use></svg>AI-assisted development</dt>
-          <dd><div class="skill-chips"><span class="skill-chip">Codex</span><span class="skill-chip">ChatGPT</span><span class="skill-chip">Claude Code</span><span class="skill-chip">Gemini</span></div></dd>
-        </div>
-      </dl>
-    </section>
-
-    <section class="section" id="education" aria-labelledby="education-title">
-      <div class="section-heading"><h2 id="education-title">Education</h2></div>
-      <div class="education-list">
-        <article class="education-row education-row--featured" aria-labelledby="education-phd-title">
-          <div class="education-topline"><span class="education-degree" aria-hidden="true">PhD</span><p class="education-period">Oct 2021 — Feb 2025</p></div>
-          <h3 id="education-phd-title"><span class="sr-only">PhD in </span>Artificial Intelligence</h3>
-          <p class="education-school">Victoria University of Wellington</p>
-        </article>
-        <article class="education-row education-row--masters" aria-labelledby="education-masters-title">
-          <div class="education-topline"><span class="education-degree" aria-hidden="true">M.S.</span><p class="education-period">Sep 2018 — Jun 2021</p></div>
-          <h3 id="education-masters-title"><span class="sr-only">M.S. in </span>Computer Application Technology</h3>
-          <p class="education-school">Shandong University of Finance and Economics</p>
-        </article>
-        <article class="education-row education-row--bachelors" aria-labelledby="education-bachelors-title">
-          <div class="education-topline"><span class="education-degree" aria-hidden="true">B.S.</span><p class="education-period">Sep 2014 — Jun 2018</p></div>
-          <h3 id="education-bachelors-title"><span class="sr-only">B.S. in </span>Digital Media Technology</h3>
-          <p class="education-school">Shandong University of Finance and Economics</p>
-        </article>
-      </div>
-    </section>
-
+    <!-- Publications and talks -->
     <section class="section" id="research" aria-labelledby="research-title">
-      <div class="section-heading"><div><h2 id="research-title">Publications</h2></div><p>Published as Ziyi Sun · 8 publications</p></div>
-      <ol class="publication-list" id="publications">
-        <li class="publication"><span class="publication-year">2026</span><div><h3><a href="https://doi.org/10.1109/TETCI.2025.3543833" target="_blank" rel="noopener noreferrer">YOLO-ITC: A New YOLO Method for Instance Segmentation of Individual Tree Crowns</a></h3><p class="publication-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler.</p><p class="publication-venue">IEEE Transactions on Emerging Topics in Computational Intelligence. 10(1), 51–65. Early access: 2025.</p><a class="publication-link" href="https://doi.org/10.1109/TETCI.2025.3543833" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for YOLO-ITC: A New YOLO Method for Instance Segmentation of Individual Tree Crowns">Publisher</a></div></li>
-        <li class="publication"><span class="publication-year">2026</span><div><h3><a href="https://doi.org/10.1007/978-981-95-7084-3_19" target="_blank" rel="noopener noreferrer">YOLOv8-UT: A Unified Training Approach for Cross-Environment Tree Crown Instance Segmentation in Aerial Imagery</a></h3><p class="publication-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler.</p><p class="publication-venue">PRICAI 2025: Trends in Artificial Intelligence. Lecture Notes in Computer Science, vol. 16455, pp. 298–314. Springer.</p><a class="publication-link" href="https://doi.org/10.1007/978-981-95-7084-3_19" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for YOLOv8-UT: A Unified Training Approach for Cross-Environment Tree Crown Instance Segmentation in Aerial Imagery">Publisher</a></div></li>
-        <li class="publication"><span class="publication-year">2025</span><div><h3><a href="https://doi.org/10.1109/JSTARS.2025.3576780" target="_blank" rel="noopener noreferrer">Feature Fusion to Improve YOLOv8 for Segmenting and Classifying Aerial Images of Tree Crowns</a></h3><p class="publication-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler.</p><p class="publication-venue">IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing. 18, 14752–14765.</p><a class="publication-link" href="https://doi.org/10.1109/JSTARS.2025.3576780" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for Feature Fusion to Improve YOLOv8 for Segmenting and Classifying Aerial Images of Tree Crowns">Publisher</a></div></li>
-        <li class="publication"><span class="publication-year">2025</span><div><h3><a href="https://doi.org/10.1080/03036758.2024.2424802" target="_blank" rel="noopener noreferrer">YOLOv8E: an efficient YOLOv8 method for instance segmentation of individual tree crowns in Wellington City, New Zealand</a></h3><p class="publication-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler.</p><p class="publication-venue">Journal of the Royal Society of New Zealand. 55(6), 1854–1879.</p><a class="publication-link" href="https://doi.org/10.1080/03036758.2024.2424802" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for YOLOv8E: an efficient YOLOv8 method for instance segmentation of individual tree crowns in Wellington City, New Zealand">Publisher</a></div></li>
-        <li class="publication"><span class="publication-year">2025</span><div><h3><a href="https://doi.org/10.1016/j.ophoto.2025.100095" target="_blank" rel="noopener noreferrer">Efficient tree mapping through deep distance transform (DDT) learning</a></h3><p class="publication-authors">Jan Schindler, <strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang.</p><p class="publication-venue">ISPRS Open Journal of Photogrammetry and Remote Sensing. 17, 100095.</p><a class="publication-link" href="https://doi.org/10.1016/j.ophoto.2025.100095" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for Efficient tree mapping through deep distance transform (DDT) learning">Publisher</a></div></li>
-        <li class="publication"><span class="publication-year">2023</span><div><h3><a href="https://doi.org/10.1109/IVCNZ61134.2023.10343827" target="_blank" rel="noopener noreferrer">An Improved Mask R-CNN for Instance Segmentation of Tree Crowns in Aerial Imagery</a></h3><p class="publication-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler.</p><p class="publication-venue">38th International Conference on Image and Vision Computing New Zealand (IVCNZ). pp. 1–6.</p><a class="publication-link" href="https://doi.org/10.1109/IVCNZ61134.2023.10343827" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for An Improved Mask R-CNN for Instance Segmentation of Tree Crowns in Aerial Imagery">Publisher</a></div></li>
-        <li class="publication"><span class="publication-year">2022</span><div><h3><a href="https://doi.org/10.1145/3478457" target="_blank" rel="noopener noreferrer">SADnet: Semi-supervised Single Image Dehazing Method Based on an Attention Mechanism</a></h3><p class="publication-authors"><strong>Ziyi Sun</strong>, Yunfeng Zhang, Fangxun Bao, Ping Wang, Xunxiang Yao, Caiming Zhang.</p><p class="publication-venue">ACM Transactions on Multimedia Computing, Communications, and Applications. 18(2), Article 58, pp. 1–23.</p><a class="publication-link" href="https://doi.org/10.1145/3478457" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for SADnet: Semi-supervised Single Image Dehazing Method Based on an Attention Mechanism">Publisher</a></div></li>
-        <li class="publication"><span class="publication-year">2021</span><div><h3><a href="https://doi.org/10.1016/j.cviu.2020.103133" target="_blank" rel="noopener noreferrer">ICycleGAN: Single image dehazing based on iterative dehazing model and CycleGAN</a></h3><p class="publication-authors"><strong>Ziyi Sun</strong>, Yunfeng Zhang, Fangxun Bao, Kai Shao, Xinxin Liu, Caiming Zhang.</p><p class="publication-venue">Computer Vision and Image Understanding. 203, 103133.</p><a class="publication-link" href="https://doi.org/10.1016/j.cviu.2020.103133" target="_blank" rel="noopener noreferrer" aria-label="Publisher page for ICycleGAN: Single image dehazing based on iterative dehazing model and CycleGAN">Publisher</a></div></li>
-      </ol>
-      <div class="publication-actions" id="publication-actions" hidden>
-        <button class="button publication-toggle" type="button" id="publications-toggle" aria-expanded="false" aria-controls="publications">
-          <span id="publications-toggle-label">Show all publications</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <p class="publication-status" id="publication-status" aria-live="polite" aria-atomic="true"></p>
+      <div class="wrap research-grid">
+        <header class="section-head research-head">
+          <p class="kicker"><span class="kicker-num">04</span> Research</p>
+          <h2 id="research-title">Publications &amp; talks</h2>
+          <p class="section-intro">Published as <strong>Ziyi Sun</strong>. Most of my work asks how to make detection and segmentation models hold up on messy, real-world imagery.</p>
+          <dl class="mini-stats">
+            <div><dt>8</dt><dd>papers</dd></div>
+            <div><dt>7</dt><dd>first-author</dd></div>
+            <div><dt>4</dt><dd>talks</dd></div>
+          </dl>
+        </header>
+
+        <div class="research-body">
+          <h3 class="list-title">Tree crowns &amp; remote sensing</h3>
+          <ol class="pubs" id="publications">
+            <li class="pub">
+              <span class="pub-year">2026</span>
+              <div>
+                <h4><a href="https://doi.org/10.1109/TETCI.2025.3543833" target="_blank" rel="noopener noreferrer">YOLO-ITC: A New YOLO Method for Instance Segmentation of Individual Tree Crowns</a></h4>
+                <p class="pub-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler</p>
+                <p class="pub-venue"><cite>IEEE Transactions on Emerging Topics in Computational Intelligence</cite> 10(1), 51–65 · early access 2025</p>
+              </div>
+            </li>
+            <li class="pub">
+              <span class="pub-year">2026</span>
+              <div>
+                <h4><a href="https://doi.org/10.1007/978-981-95-7084-3_19" target="_blank" rel="noopener noreferrer">YOLOv8-UT: A Unified Training Approach for Cross-Environment Tree Crown Instance Segmentation in Aerial Imagery</a></h4>
+                <p class="pub-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler</p>
+                <p class="pub-venue"><cite>PRICAI 2025: Trends in Artificial Intelligence</cite> LNCS 16455, 298–314 · Springer</p>
+              </div>
+            </li>
+            <li class="pub">
+              <span class="pub-year">2025</span>
+              <div>
+                <h4><a href="https://doi.org/10.1109/JSTARS.2025.3576780" target="_blank" rel="noopener noreferrer">Feature Fusion to Improve YOLOv8 for Segmenting and Classifying Aerial Images of Tree Crowns</a></h4>
+                <p class="pub-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler</p>
+                <p class="pub-venue"><cite>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</cite> 18, 14752–14765</p>
+              </div>
+            </li>
+            <li class="pub">
+              <span class="pub-year">2025</span>
+              <div>
+                <h4><a href="https://doi.org/10.1080/03036758.2024.2424802" target="_blank" rel="noopener noreferrer">YOLOv8E: An Efficient YOLOv8 Method for Instance Segmentation of Individual Tree Crowns in Wellington City, New Zealand</a></h4>
+                <p class="pub-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler</p>
+                <p class="pub-venue"><cite>Journal of the Royal Society of New Zealand</cite> 55(6), 1854–1879</p>
+              </div>
+            </li>
+            <li class="pub">
+              <span class="pub-year">2025</span>
+              <div>
+                <h4><a href="https://doi.org/10.1016/j.ophoto.2025.100095" target="_blank" rel="noopener noreferrer">Efficient Tree Mapping through Deep Distance Transform (DDT) Learning</a></h4>
+                <p class="pub-authors">Jan Schindler, <strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang</p>
+                <p class="pub-venue"><cite>ISPRS Open Journal of Photogrammetry and Remote Sensing</cite> 17, 100095</p>
+              </div>
+            </li>
+            <li class="pub">
+              <span class="pub-year">2023</span>
+              <div>
+                <h4><a href="https://doi.org/10.1109/IVCNZ61134.2023.10343827" target="_blank" rel="noopener noreferrer">An Improved Mask R-CNN for Instance Segmentation of Tree Crowns in Aerial Imagery</a></h4>
+                <p class="pub-authors"><strong>Ziyi Sun</strong>, Bing Xue, Mengjie Zhang, Jan Schindler</p>
+                <p class="pub-venue"><cite>38th International Conference on Image and Vision Computing New Zealand (IVCNZ)</cite> 1–6</p>
+              </div>
+            </li>
+          </ol>
+
+          <h3 class="list-title">Image dehazing</h3>
+          <ol class="pubs">
+            <li class="pub">
+              <span class="pub-year">2022</span>
+              <div>
+                <h4><a href="https://doi.org/10.1145/3478457" target="_blank" rel="noopener noreferrer">SADnet: Semi-supervised Single Image Dehazing Method Based on an Attention Mechanism</a></h4>
+                <p class="pub-authors"><strong>Ziyi Sun</strong>, Yunfeng Zhang, Fangxun Bao, Ping Wang, Xunxiang Yao, Caiming Zhang</p>
+                <p class="pub-venue"><cite>ACM Transactions on Multimedia Computing, Communications, and Applications</cite> 18(2), article 58, 1–23</p>
+              </div>
+            </li>
+            <li class="pub">
+              <span class="pub-year">2021</span>
+              <div>
+                <h4><a href="https://doi.org/10.1016/j.cviu.2020.103133" target="_blank" rel="noopener noreferrer">ICycleGAN: Single Image Dehazing Based on Iterative Dehazing Model and CycleGAN</a></h4>
+                <p class="pub-authors"><strong>Ziyi Sun</strong>, Yunfeng Zhang, Fangxun Bao, Kai Shao, Xinxin Liu, Caiming Zhang</p>
+                <p class="pub-venue"><cite>Computer Vision and Image Understanding</cite> 203, 103133</p>
+              </div>
+            </li>
+          </ol>
+
+          <h3 class="list-title">Talks</h3>
+          <ol class="talks">
+            <li><span class="pub-year">2023</span><div><p class="talk-title">An Improved Mask R-CNN for Instance Segmentation of Tree Crowns in Aerial Imagery</p><p class="pub-venue">IVCNZ 2023 · Palmerston North</p></div></li>
+            <li><span class="pub-year">2023</span><div><p class="talk-title">YOLO for Instance Segmentation of Individual Tree Crowns</p><p class="pub-venue">IEEE Postgraduate Symposium · Wellington</p></div></li>
+            <li><span class="pub-year">2022</span><div><p class="talk-title">Neural Architecture Search for Image Segmentation</p><p class="pub-venue">IEEE Postgraduate Symposium · Wellington</p></div></li>
+            <li><span class="pub-year">2021</span><div><p class="talk-title">Evolutionary Computation for Image Analysis</p><p class="pub-venue">IEEE Postgraduate Symposium · Wellington</p></div></li>
+          </ol>
+        </div>
       </div>
     </section>
 
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Get in touch</h2>
-      <svg class="contact-illustration" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
-        <rect x="10" y="17" width="44" height="32" rx="5" stroke="currentColor" stroke-width="1.8"/>
-        <path d="m12 20 20 16 20-16M12 46l13-12m27 12L39 34" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M32 5v5m19-2-3 4M13 8l3 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-      <p>For research discussions and professional enquiries.</p>
-      <div class="contact-links">
-        <details class="email-contact"><summary>Email</summary><div class="email-reveal"><p class="email-address">ziyisun27@gmail.com</p></div></details>
-        <a href="https://www.linkedin.com/in/zoey-sun/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/ZoeySun3" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <!-- Skills -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="kicker"><span class="kicker-num">05</span> Toolkit</p>
+          <h2 id="skills-title">What I work with</h2>
+        </header>
+        <dl class="toolkit">
+          <div class="tool-group"><dt>Code &amp; data</dt><dd>Python, SQL, Java, C/C++, LaTeX, Pandas, NumPy, SciPy</dd></div>
+          <div class="tool-group"><dt>Machine learning</dt><dd>PyTorch, TensorFlow, scikit-learn, OpenCV, CNNs, Transformers, U-Net, YOLO</dd></div>
+          <div class="tool-group"><dt>Remote sensing</dt><dd>Aerial imagery, LiDAR, canopy height prediction, tree-crown segmentation, geospatial datasets</dd></div>
+          <div class="tool-group"><dt>Generative AI</dt><dd>LLM applications, RAG, semantic retrieval, LLM evaluation, n8n automation</dd></div>
+          <div class="tool-group"><dt>MLOps &amp; cloud</dt><dd>Git, GitHub, CI, reproducible pipelines, multi-GPU training, Azure AI Studio, AWS, Linux</dd></div>
+          <div class="tool-group"><dt>Analysis &amp; reporting</dt><dd>Statistical analysis, experimental evaluation, Power BI, Matplotlib, Seaborn</dd></div>
+          <div class="tool-group"><dt>AI-assisted development</dt><dd>Codex, ChatGPT, Claude Code, Gemini</dd></div>
+          <div class="tool-group"><dt>Communication</dt><dd>Papers, conference talks, technical reports, workshops, client demos, AI/ML tutoring</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Education and life outside work -->
+    <section class="section" id="education" aria-labelledby="education-title">
+      <div class="wrap edu-grid">
+        <div>
+          <header class="section-head">
+            <p class="kicker"><span class="kicker-num">06</span> Education</p>
+            <h2 id="education-title">Where I studied</h2>
+          </header>
+          <ol class="degrees">
+            <li class="degree">
+              <span class="degree-level">PhD</span>
+              <div><h3>Artificial Intelligence</h3><p>Victoria University of Wellington</p></div>
+              <span class="degree-years">2021 — 2025</span>
+            </li>
+            <li class="degree">
+              <span class="degree-level">M.S.</span>
+              <div><h3>Computer Application Technology</h3><p>Shandong University of Finance and Economics</p></div>
+              <span class="degree-years">2018 — 2021</span>
+            </li>
+            <li class="degree">
+              <span class="degree-level">B.S.</span>
+              <div><h3>Digital Media Technology</h3><p>Shandong University of Finance and Economics</p></div>
+              <span class="degree-years">2014 — 2018</span>
+            </li>
+          </ol>
+        </div>
+        <aside class="offline" aria-labelledby="offline-title">
+          <h3 id="offline-title" class="kicker">Away from the screen</h3>
+          <p>Outside work I like to be outdoors — fishing, hiking, cycling or swimming — or on a badminton court. Indoors: cooking, reading, and planning the next trip.</p>
+          <p class="offline-lang"><span class="mono-caption">Languages</span> English (fluent) · Chinese (native)</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-inner">
+        <p class="kicker">Contact</p>
+        <h2 id="contact-title">Let’s talk.</h2>
+        <p class="contact-lede">Research collaborations, applied-AI questions or a dataset that needs a closer look — I’d be glad to hear from you.</p>
+        <div class="contact-links">
+          <a class="contact-chip" href="https://www.linkedin.com/in/zoey-sun/" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-linkedin"/></svg>LinkedIn</a>
+          <a class="contact-chip" href="https://github.com/ZoeySun3" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-github"/></svg>GitHub</a>
+          <details class="email-reveal" id="email-reveal">
+            <summary class="contact-chip"><svg aria-hidden="true"><use href="#icon-mail"/></svg>Email</summary>
+            <p class="email-address">ziyisun27@gmail.com</p>
+          </details>
+        </div>
       </div>
     </section>
   </main>
-  <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title"><div class="dialog-toolbar"><span>Project notes</span><button id="project-close" type="button" class="dialog-close" aria-label="Close project details">Close <span aria-hidden="true">×</span></button></div><div id="project-detail"><h2 id="project-dialog-title"></h2></div></dialog>
-  <footer class="container site-footer"><span>Zoey (Ziyi) Sun</span><a href="#about">Back to top</a></footer>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© 2026 Zoey (Ziyi) Sun</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <!-- Case studies: the dialog is filled from these templates. -->
+  <dialog class="case" id="project-dialog" aria-labelledby="project-dialog-title">
+    <div class="case-bar">
+      <span class="mono-caption" id="case-crumb">Case study</span>
+      <button id="project-close" type="button" class="icon-button" aria-label="Close case study"><svg aria-hidden="true"><use href="#icon-close"/></svg></button>
+    </div>
+    <div class="case-body" id="project-detail"><h2 id="project-dialog-title">Case study</h2></div>
+  </dialog>
+
+  <template id="case-forest">
+    <header class="case-head">
+      <p class="kicker">Current work · Dragonfly Data Science · Nov 2025 – now</p>
+      <h2 id="project-dialog-title">Dynamic forest mapping</h2>
+      <p class="case-lede">LiDAR measures forest structure in remarkable detail, but it only covers part of New Zealand and is expensive to repeat. Aerial imagery is far more widely available. This project trains models where both exist, then predicts synthetic canopy height models (synCHMs) where LiDAR is missing.</p>
+    </header>
+    <figure class="case-figure case-figure--canopy">
+      <img src="assets/dragonfly-canopy.png" alt="An aerial image beside the model-predicted synthetic canopy height model for the same area" width="249" height="240">
+      <figcaption>From the project: aerial imagery (left) and a model-predicted synthetic canopy height model (right).</figcaption>
+    </figure>
+    <ol class="flow" aria-label="How the method works">
+      <li><span>01</span>Pair aerial imagery with LiDAR-derived canopy heights</li>
+      <li><span>02</span>Train and validate models on the paired areas</li>
+      <li><span>03</span>Predict canopy height wherever imagery exists</li>
+    </ol>
+    <section><h3>Context</h3><p>At Dragonfly Data Science I work on the MBIE-funded Catalyst: Strategic project <em>Integrating machine learning and remote sensing for dynamic forest mapping</em>, a partnership with NASA Earth Exchange (NEX). The wider aim is a regularly updated picture of New Zealand’s forests — combining structural maps with satellite time series to follow growth and disturbance — for forest management, conservation and carbon assessment.</p></section>
+    <section><h3>What I do</h3><ul>
+      <li>Develop and evaluate models that predict tree height and forest characteristics from aerial imagery, using LiDAR for training and validation.</li>
+      <li>Research individual tree-crown segmentation and forest classification across LiDAR and aerial imagery.</li>
+      <li>Build reproducible pipelines for training and inference datasets, and test, train, validate and deploy models with Git, continuous integration and cloud infrastructure.</li>
+      <li>Share findings with a multidisciplinary team through project updates, reports, workshops and scientific outputs.</li>
+    </ul></section>
+    <ul class="tags"><li>Machine learning</li><li>Remote sensing</li><li>Aerial imagery</li><li>LiDAR</li><li>U-Net</li><li>Git / CI</li><li>Cloud infrastructure</li></ul>
+  </template>
+
+  <template id="case-crowns">
+    <header class="case-head">
+      <p class="kicker">Doctoral research · Victoria University of Wellington · 2021 – 2025</p>
+      <h2 id="project-dialog-title">Finding every tree</h2>
+      <p class="case-lede">Tree crowns are a hard test for instance segmentation: they overlap, vary hugely in size, and blend into lawns, shadows and each other. My PhD developed detection and segmentation models that pick out each crown individually in aerial imagery.</p>
+    </header>
+    <figure class="case-figure">
+      <div class="compare" style="--pos: 50%">
+        <img src="assets/crowns-masks.webp" alt="The aerial image with every detected tree crown outlined and filled in red, each labelled with a confidence score" width="620" height="620">
+        <img class="compare-top" src="assets/crowns-aerial.webp" alt="" width="620" height="620">
+        <span class="compare-handle" aria-hidden="true"></span>
+        <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare the aerial image with the predicted tree crowns">
+        <span class="plate-tag plate-tag--tl">Input</span>
+        <span class="plate-tag plate-tag--tr">Prediction</span>
+      </div>
+      <figcaption>Drag to compare: aerial imagery and the model’s predicted crowns, with bounding boxes, instance masks and confidence scores.</figcaption>
+    </figure>
+    <section><h3>Context</h3><p>The research was a collaboration with Manaaki Whenua – Landcare Research, supervised by Mengjie Zhang and Bing Xue. I continued it as a research assistant in 2025.</p></section>
+    <section><h3>What I did</h3><ul>
+      <li>Designed new architectures: <strong>YOLO-ITC</strong> adapts YOLOv7 with a detection design for small and medium crowns, densely connected feature reuse and efficient attention; <strong>YOLOv8E</strong> rethinks positive-sample selection and slims the network; a <strong>feature-fusion</strong> YOLOv8 combines cross-scale and same-scale information; and <strong>YOLOv8-UT</strong> trains a single model across environments.</li>
+      <li>Built data pipelines for large aerial-imagery datasets and distributed multi-GPU training.</li>
+      <li>Evaluated models with statistical analysis against established baselines, improving crown detection accuracy by 10% and segmentation accuracy by 8%.</li>
+      <li>Published six papers on the work and presented it at IVCNZ 2023 and the IEEE Postgraduate Symposium.</li>
+    </ul></section>
+    <ul class="tags"><li>Python</li><li>PyTorch</li><li>YOLO</li><li>Mask R-CNN</li><li>Transformers</li><li>Instance segmentation</li></ul>
+    <p class="case-links"><a href="#research" data-close>See the publications</a></p>
+  </template>
+
+  <template id="case-rag">
+    <header class="case-head">
+      <p class="kicker">Conversational AI · Callaghan Innovation · Oct 2024 – Mar 2025</p>
+      <h2 id="project-dialog-title">GovGPT &amp; PaperBoi</h2>
+      <p class="case-lede">Two conversational AI projects with one goal: make specialised information easy to ask about. GovGPT gives New Zealanders a plain-language way into government services and policy; PaperBoi supports discovery and knowledge transfer from research published by New Zealand institutions.</p>
+    </header>
+    <figure class="case-figure case-figure--diagram" data-diagram="rag">
+      <figcaption>Concept diagram of retrieval-augmented generation — not a product screenshot.</figcaption>
+    </figure>
+    <section><h3>What I did</h3><ul>
+      <li>Implemented and improved retrieval-augmented generation (RAG) workflows so answers drew on more relevant government and scientific sources.</li>
+      <li>Worked on semantic retrieval and the relevance of the information returned to users.</li>
+      <li>Contributed to the projects’ cloud-based AI workflows on Azure AI Studio and AWS, as part of an Agile team.</li>
+    </ul></section>
+    <ul class="tags"><li>Python</li><li>LLMs</li><li>RAG</li><li>Semantic retrieval</li><li>Azure AI Studio</li><li>AWS</li><li>GitHub</li></ul>
+  </template>
+
+  <template id="case-agents">
+    <header class="case-head">
+      <p class="kicker">AI workflows · ElementX · Aug – Oct 2025</p>
+      <h2 id="project-dialog-title">LLM evaluation &amp; document automation</h2>
+      <p class="case-lede">At ElementX I worked across agentic AI projects: the backend of a chatbot, structured evaluation of what the model actually says, and automation that turns AI drafts into reviewed, delivered documents.</p>
+    </header>
+    <figure class="case-figure case-figure--diagram" data-diagram="agents">
+      <figcaption>Concept diagram of the human-in-the-loop document workflow — not a product screenshot.</figcaption>
+    </figure>
+    <section><h3>What I did</h3><ul>
+      <li>Contributed to chatbot backend development and used SQL to manage application data.</li>
+      <li>Evaluated LLM response accuracy through structured testing and evaluation research.</li>
+      <li>Built end-to-end n8n workflows that generate proposals and supporting documents with AI models, route drafts for human review, and deliver approved files to recipients.</li>
+    </ul></section>
+    <ul class="tags"><li>LLMs</li><li>LLM evaluation</li><li>SQL</li><li>Ruby</li><li>n8n</li><li>Workflow automation</li></ul>
+  </template>
+
+  <template id="case-inspection">
+    <header class="case-head">
+      <p class="kicker">Applied computer vision · China · 2020 – 2021</p>
+      <h2 id="project-dialog-title">Industrial visual inspection</h2>
+      <p class="case-lede">Before my PhD I worked on two applied computer-vision systems, taking each from raw factory images to working deployments.</p>
+    </header>
+    <div class="case-pair">
+      <figure class="case-figure"><img src="assets/weld-line.webp" alt="Workers beside a wheel-hub production line fitted with inspection equipment" width="1178" height="662"><figcaption>The wheel-hub production line.</figcaption></figure>
+      <figure class="case-figure"><img src="assets/weld-detect.webp" alt="A wheel hub with the detected weld seam marked by a blue bounding box" width="798" height="662"><figcaption>A detected weld seam.</figcaption></figure>
+    </div>
+    <section><h3>Weld-seam positioning <span class="case-when">May – Nov 2020</span></h3>
+      <p>With FAW and China National Heavy Duty Truck Group, I worked on data collection, cleaning and labelling, and developed YOLO models to detect and locate weld seams on wheel hubs. I supported real-world deployment and client demonstrations.</p>
+      <dl class="case-metrics"><div><dt>99.98%</dt><dd>weld-seam detection rate</dd></div><div><dt>&lt; 0.3 cm</dt><dd>positioning error</dd></div></dl>
+    </section>
+    <div class="case-pair">
+      <figure class="case-figure case-figure--white"><img src="assets/glass-flat.webp" alt="Sheets of flat glass with an inset close-up of a detected stone inclusion, confidence 0.63" width="1005" height="1146"><figcaption>Flat glass: a detected inclusion.</figcaption></figure>
+      <figure class="case-figure case-figure--white"><img src="assets/glass-ware.webp" alt="Glass dishes with an inset close-up of a detected bubble, confidence 0.93" width="1010" height="1146"><figcaption>Glassware: a detected bubble.</figcaption></figure>
+    </div>
+    <section><h3>Glass-flaw detection <span class="case-when">Feb – Aug 2021</span></h3>
+      <p>I built the dataset and computer-vision pipeline — collection, image processing, labelling and YOLO model development — for automated glass-defect detection, then presented the results to the client and supported integration into practical use.</p>
+      <dl class="case-metrics"><div><dt>&gt; 93%</dt><dd>accuracy across flat, speciality and decorative glass</dd></div></dl>
+    </section>
+    <ul class="tags"><li>Computer vision</li><li>YOLO</li><li>Object detection</li><li>Dataset building</li><li>Deployment</li></ul>
+  </template>
+
+  <template id="case-dehazing">
+    <header class="case-head">
+      <p class="kicker">Image restoration · Master’s research · 2018 – 2021</p>
+      <h2 id="project-dialog-title">Single-image dehazing</h2>
+      <p class="case-lede">Haze scatters light, washing out colour, contrast and detail. My master’s research at Shandong University of Finance and Economics asked how deep learning can recover a clear image from a single hazy photograph — when perfectly paired training data are hard to come by.</p>
+    </header>
+    <figure class="case-figure">
+      <img src="assets/dehazing-example.webp" alt="Illustration of dehazing: a hazy mountain valley on the left and a clear one on the right" width="960" height="640">
+      <figcaption>An illustration of the task — not output from SADnet or ICycleGAN.</figcaption>
+    </figure>
+    <section><h3>What I did</h3><ul>
+      <li><strong>SADnet</strong> — a semi-supervised dehazing network that combines channel, spatial and self-attention.</li>
+      <li><strong>ICycleGAN</strong> — integrates an iterative dehazing model into CycleGAN to preserve texture and colour.</li>
+      <li>Designed and ran the image-restoration experiments, and wrote up both methods for peer-reviewed journals.</li>
+    </ul></section>
+    <ul class="tags"><li>Deep learning</li><li>Semi-supervised learning</li><li>Attention</li><li>CycleGAN</li><li>Image restoration</li></ul>
+    <p class="case-links"><a href="https://doi.org/10.1145/3478457" target="_blank" rel="noopener noreferrer">Read SADnet</a><a href="https://doi.org/10.1016/j.cviu.2020.103133" target="_blank" rel="noopener noreferrer">Read ICycleGAN</a></p>
+  </template>
 </body>
 </html>

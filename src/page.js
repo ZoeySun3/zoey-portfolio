@@ -233,9 +233,12 @@ showConversation(false);
 function showMode(ai, fallback = false, reason = '') {
   $('#chat-mode').textContent = ai ? 'AI assistant' : 'Profile Q&A';
   $('.chat-status').classList.toggle('is-ai', ai);
-  $('#chat-disclosure').textContent = ai
-    ? 'Questions are sent to DeepSeek and answered from Zoey’s public profile. Answers may be imperfect.'
+  // AI answers need no note; a prepared answer says why it replaced the AI.
+  const note = $('#chat-disclosure');
+  note.textContent = ai
+    ? ''
     : fallback ? (reason === 'rate_limited' ? 'The AI assistant has reached its usage limit, so this is a prepared answer. Please try again later.' : 'The AI assistant is unavailable right now, so this is a prepared answer.') : 'Prepared answers from Zoey’s profile and publications.';
+  note.hidden = !note.textContent;
 }
 // Try the configured backend on every question: a cold start or a transient failure
 // must not disable AI for the rest of the visit. Nothing is stored in the browser.

@@ -9,6 +9,8 @@ const profile = {
   "employer": "Dragonfly Data Science",
   "location": "Wellington, New Zealand",
   "email": "ziyisun27@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/zoey-sun/",
+  "github": "https://github.com/ZoeySun3",
   "summary": "Applied AI scientist with a PhD in artificial intelligence and industry experience, building practical, reliable AI solutions from early prototypes to real-world deployment. Builds models that read landscapes from aerial imagery and LiDAR, and has worked on retrieval-augmented assistants and LLM evaluation.",
   "education": [
     "PhD in Artificial Intelligence, Victoria University of Wellington, Oct 2021–Feb 2025.",
@@ -599,11 +601,12 @@ const topics = [
       "opportunit",
       "available",
       "linkedin",
+      "github",
       "reach her",
       "reach zoey",
       "get in touch"
     ],
-    "answer": "You can reach Zoey at ziyisun27@gmail.com or on LinkedIn. For collaboration, opportunities or availability, please ask her directly; those details aren’t part of her public profile.",
+    "answer": "You can reach Zoey by email at ziyisun27@gmail.com or on LinkedIn at https://www.linkedin.com/in/zoey-sun/. Her GitHub is https://github.com/ZoeySun3. For collaboration, opportunities or availability, please ask her directly; those details aren’t part of her public profile.",
     "source": "#contact"
   },
   {
